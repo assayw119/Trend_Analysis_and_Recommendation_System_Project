@@ -1,7 +1,8 @@
 
 1. 가상환경을 연결하기 위해 터미널에 source cvenv/bin/activate 입력  
 2. pip install -r requirements.txt
-3. mongodb와 python 연결
-4. secrets.json -> id , password 입력 
-5. test.py 실행
+3. mongodb와 python 연결 # 할거면 ㅇㅇ 
+4. secrets.json -> id , password 입력 # 할거면 ㅇㅇ
+5-1. db에서 database 형태로 불러오기 -> test(to database).py 실행
+5-2. python dataframe 형태로 불러오기 -> test(to dataframe).py 실행
 6. mongodb에서 만들어진 database 파일(test->inform) 확인 
