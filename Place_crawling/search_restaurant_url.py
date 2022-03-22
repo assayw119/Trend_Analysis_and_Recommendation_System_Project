@@ -1,0 +1,32 @@
+import requests
+import pandas as pd
+from fake_useragent import UserAgent
+
+
+
+
+def restaurant(station, displayCount):
+
+    dfs = []
+    for page in range(1, 4):  # 1페이지부터 ~4(n) 페이지까지
+        url = "https://map.naver.com/v5/api/search?caller=pcweb&query={}맛집&type=all&page={}&displayCount={}&isPlaceRecommendationReplace=true&lang=ko".format(
+            station, page, displayCount
+        )
+        headers = {"user-agent": UserAgent().chrome}
+        response = requests.get(url, headers=headers)
+
+        datas_df = pd.DataFrame(response.json()["result"]["place"]["list"])
+        datas_df = datas_df[["id"]]
+        dfs.append(datas_df)
+
+    result_df = pd.concat(dfs)
+    result_df.reset_index(drop=True, inplace=True)
+
+    ids = list(result_df["id"])
+
+    id_ = []
+    count = 0
+    for i in ids:
+        url = "https://m.place.naver.com/restaurant/{}/home".format(i)
+        id_.append(url)
+    return id_
