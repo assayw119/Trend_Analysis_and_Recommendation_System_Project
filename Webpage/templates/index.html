@@ -21,7 +21,7 @@
         <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
 
 
-        <title>스파르타코딩클럽 | 나홀로 메모장</title>
+        <title>데사 캡스톤 test</title>
 
         <!-- style -->
         <style type="text/css">
@@ -55,10 +55,10 @@
             function openClose() {
                 if ($("#post-box").css("display") == "block") {
                     $("#post-box").hide();
-                    $("#btn-post-box").text("포스팅 박스 열기");
+                    $("#btn-post-box").text("검색 박스 열기");
                 } else {
                     $("#post-box").show();
-                    $("#btn-post-box").text("포스팅 박스 닫기");
+                    $("#btn-post-box").text("검색 박스 닫기");
                 }
             }
 
@@ -83,24 +83,30 @@
                     url: "/memo",
                     data: {},
                     success: function (response) {
-                        let articles = response['all_articles']
-                        // console.log(articles)
+                        let restaurants = response['all_restaurants']
+                        console.log(restaurants)
 
-                        for (let i = 0; i < articles.length; i++) {
-                            let title = articles[i]['title']
-                            let image = articles[i]['image']
-                            let url = articles[i]['url']
-                            let desc = articles[i]['desc']
-                            let comment = articles[i]['comment']
+                        for (let i = 0; i < restaurants.length; i++) {
+                            let name = restaurants[i]['name']
+                            let sort = restaurants[i]['sort']
+                            let mood = restaurants[i]['mood']
+                            let menu = restaurants[i]['menu']
+                            let mean_price = restaurants[i]['mean_price']
+                            let point = restaurants[i]['point']
+                            let reviews = restaurants[i]['reviews']
 
                             let temp_html = `<div class="card">
                                                 <img class="card-img-top"
-                                                     src="${image}"
+                                                     src="https://d2v80xjmx68n4w.cloudfront.net/gigs/fPoZ31584321311.jpg"
                                                      alt="Card image cap">
                                                 <div class="card-body">
-                                                    <a target="_blank" href="${url}" class="card-title">${title}</a>
-                                                    <p class="card-text">${desc}</p>
-                                                    <p class="card-text comment">${comment}</p>
+                                                    <a target="_blank" href="https://map.naver.com/v5/search/${name}" class="card-title">${name}</a>
+                                                    <p class="card-text">대표음식 : ${sort}</p>
+                                                    <p class="card-text">분위기 : ${mood}</p>
+                                                    <p class="card-text">메뉴 : ${menu}</p>
+                                                    <p class="card-text">평균 가격 : ${mean_price}</p>
+                                                    <p class="card-text">네이버 리뷰 수 : ${reviews}</p>
+                                                    <p class="card-text comment">평점: ${point}</p>
                                                 </div>
                                             </div>`
                             $('#cards-box').append(temp_html)
@@ -115,25 +121,25 @@
     <body>
         <div class="wrap">
             <div class="jumbotron">
-                <h1 class="display-4">나홀로 링크 메모장!</h1>
-                <p class="lead">중요한 링크를 저장해두고, 나중에 볼 수 있는 공간입니다</p>
+                <h1 class="display-4">검색</h1>
+                <p class="lead">카테고리를 기준으로 검색합니다.</p>
                 <hr class="my-4">
                 <p class="lead">
-                    <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-primary">포스팅 박스 열기
+                    <button onclick="openClose()" id="btn-post-box" type="button" class="btn btn-primary">검색 박스 열기
                     </button>
                 </p>
             </div>
             <div id="post-box" class="form-post" style="display:none">
                 <div>
                     <div class="form-group">
-                        <label for="post-url">아티클 URL</label>
+                        <label for="post-url">카테고리 1</label>
                         <input id="post-url" class="form-control" placeholder="">
                     </div>
                     <div class="form-group">
-                        <label for="post-comment">간단 코멘트</label>
-                        <textarea id="post-comment" class="form-control" rows="2"></textarea>
+                        <label for="post-comment">카테고리 2</label>
+                        <textarea id="post-comment" class="form-control"></textarea>
                     </div>
-                    <button type="button" class="btn btn-primary" onclick="postArticle()">기사저장</button>
+                    <button type="button" class="btn btn-primary" onclick="postArticle()">검색하기</button>
                 </div>
             </div>
             <div id="cards-box" class="card-columns">
