@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 from pymongo import MongoClient
 client = MongoClient('localhost', 27017)
-db = client.dbsparta
+db = client.test
 
 ## HTML을 주는 부분
 @app.route('/')
@@ -15,8 +15,8 @@ def home():
 
 @app.route('/memo', methods=['GET'])
 def listing():
-    articles = list(db.articles.find({}, {'_id':False}))
-    return jsonify({'all_articles':articles})
+    restaurant = list(db.inform.find({}, {'_id':False}))
+    return jsonify({'all_restaurants':restaurant})
 
 ## API 역할을 하는 부분
 @app.route('/memo', methods=['POST'])

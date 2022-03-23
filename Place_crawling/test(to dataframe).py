@@ -9,10 +9,10 @@ from inform_restaurant import inform_restaurant #네이버 플레이스에서 �
 
 if __name__ == "__main__":
 
-    ca = certifi.where()
-    client = MongoClient(MONGO_URL, tlsCAFile=ca)
+    # ca = certifi.where()
+    # client = MongoClient(MONGO_URL, tlsCAFile=ca)
 
-    db = client["test"]
+    # db = client["test"]
     # print(db)
     urls = restaurant("충무로", 1)  # 3*n개의 url이 나옴
     df = pd.DataFrame(columns=["이름", "분류", "분위기(테마키워드)", "주요 메뉴", "평균 가격", "평점", "리뷰 수"])

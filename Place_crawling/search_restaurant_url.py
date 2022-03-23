@@ -12,7 +12,9 @@ def restaurant(station, displayCount):
         url = "https://map.naver.com/v5/api/search?caller=pcweb&query={}맛집&type=all&page={}&displayCount={}&isPlaceRecommendationReplace=true&lang=ko".format(
             station, page, displayCount
         )
-        headers = {"user-agent": UserAgent().chrome}
+        # headers = {"user-agent": UserAgent().chrome}
+        headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.86 Safari/537.36'}
         response = requests.get(url, headers=headers)
 
         datas_df = pd.DataFrame(response.json()["result"]["place"]["list"])
