@@ -1,6 +1,6 @@
 
 import certifi
-from models.information import Information
+# from models.information import Information
 from pymongo import MongoClient
 from config import MONGO_URL
 from search_restaurant_url import restaurant # 지역별 음식점의 링크 가져오기 
@@ -9,7 +9,8 @@ from inform_restaurant import inform_restaurant #네이버 플레이스에서 �
 if __name__ == "__main__":
 
     ca = certifi.where()
-    client = MongoClient(MONGO_URL, tlsCAFile=ca)
+    # client = MongoClient(MONGO_URL, tlsCAFile=ca)
+    client = MongoClient('localhost', 27017)
 
     db = client["test"]
     # print(db)
