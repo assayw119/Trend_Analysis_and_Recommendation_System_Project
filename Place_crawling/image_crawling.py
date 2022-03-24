@@ -52,7 +52,7 @@ def total_img_list_func(url, cnt):
     options = webdriver.ChromeOptions()
     # 창 숨기는 옵션 추가
     options.add_argument("headless")
-    driver = webdriver.Chrome("chromedriver", options=options)
+    driver = webdriver.Chrome("./chromedriver", options=options)
 
     driver.get(url[:-4] + "photo")
 

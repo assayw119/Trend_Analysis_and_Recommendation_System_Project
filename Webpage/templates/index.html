@@ -94,10 +94,11 @@
                             let mean_price = restaurants[i]['mean_price']
                             let point = restaurants[i]['point']
                             let reviews = restaurants[i]['reviews']
+                            let image = restaurants[i]['image']
 
                             let temp_html = `<div class="card">
                                                 <img class="card-img-top"
-                                                     src="https://d2v80xjmx68n4w.cloudfront.net/gigs/fPoZ31584321311.jpg"
+                                                     src="${image}"
                                                      alt="Card image cap">
                                                 <div class="card-body">
                                                     <a target="_blank" href="https://map.naver.com/v5/search/${name}" class="card-title">${name}</a>
