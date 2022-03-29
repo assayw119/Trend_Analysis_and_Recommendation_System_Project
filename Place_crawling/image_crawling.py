@@ -15,8 +15,9 @@ def image_crawling(driver, link, cnt):
     print("-" * 50)
     name = driver.find_element(
         by=By.XPATH,
-        value="/html/body/div[3]/div/div/div[2]/div[1]/div/div/div[1]/div[1]/span[1]",
+        value="/html/body/div[3]/div/div/div[2]/div[1]/div[1]/div[1]/span[1]",
     )
+
     print(name.text)
 
     while num < cnt + 1:
@@ -30,6 +31,7 @@ def image_crawling(driver, link, cnt):
                 image_path = driver.find_element(
                     by=By.XPATH, value=f'//*[@id="visitor_{num}"]'
                 )
+
             except:
                 image_path = driver.find_element(
                     by=By.XPATH, value=f'//*[@id="ugc_{num}"]'
@@ -52,11 +54,12 @@ def total_img_list_func(url, cnt):
     options = webdriver.ChromeOptions()
     # 창 숨기는 옵션 추가
     options.add_argument("headless")
-    driver = webdriver.Chrome("./chromedriver", options=options)
-
+    # driver = webdriver.Chrome("./chromedriver", options=options)
+    driver = webdriver.Chrome("chromedriver", options=options)
     driver.get(url[:-4] + "photo")
 
     driver.implicitly_wait(5)
 
     total_image_list += image_crawling(driver, url, cnt)
+
     return total_image_list
