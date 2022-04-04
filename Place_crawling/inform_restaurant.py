@@ -48,15 +48,15 @@ def inform_restaurant(url):
         if price != "변동" and "원" in price:
 
             price_list.append(int(price[:-1].replace(",", "")))
-    mean_price = np.mean(price_list)  # 평균 가격
+    mean_price = int(np.mean(price_list))  # 평균 가격
 
     # 딕셔너리 정의하기
     inform = {}
-    inform["이름"] = title
-    inform["분류"] = sort
-    inform["주요 메뉴"] = ",".join(menu_list)
-    inform["평균 가격"] = mean_price
-    inform["평점"] = star
-    inform["리뷰 수"] = blog + visit
+    inform["name"] = title
+    inform["sort"] = sort
+    inform["main_menu"] = ",".join(menu_list)
+    inform["mean_price"] = mean_price
+    inform["score"] = star
+    inform["rivew_count"] = blog + visit
 
     return inform
