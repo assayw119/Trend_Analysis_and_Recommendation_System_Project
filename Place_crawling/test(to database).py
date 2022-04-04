@@ -1,4 +1,5 @@
 import certifi
+
 # from models.information import Information
 from pymongo import MongoClient
 from config import MONGO_URL
@@ -9,8 +10,8 @@ from image_crawling import total_img_list_func  # 이미지 크롤링 후 리스
 if __name__ == "__main__":
 
     ca = certifi.where()
-    # client = MongoClient(MONGO_URL, tlsCAFile=ca)
-    client = MongoClient('localhost', 27017)
+    client = MongoClient(MONGO_URL, tlsCAFile=ca)
+    # client = MongoClient('localhost', 27017)
 
     db = client["test"]
     # print(db)
@@ -23,7 +24,6 @@ if __name__ == "__main__":
         info = {
             "name": result["이름"],
             "sort": result["분류"],
-            "mood": str(result["분위기(테마키워드)"]),
             "menu": result["주요 메뉴"],
             "mean_price": result["평균 가격"],
             "point": float(result["평점"]),

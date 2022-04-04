@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup as bs
 import urllib.request as ur
 import numpy as np
 
+
 def inform_restaurant(url):
     html = ur.urlopen(url)
     soup = bs(html.read(), "html.parser")
@@ -15,8 +16,9 @@ def inform_restaurant(url):
     title = soup.find("span", "_3XamX").text  # 제목
     sort = soup.find("span", "_3ocDE").text  # 곰탕,설렁탕 < 같은 설명
 
-    tag = soup.find("div", "_1kUrA")
-    post = tag.find_all("em")
+    # tag = soup.find("div", "_1kUrA")
+
+    tag = soup.find("div", "_37n49")
     star, visit, blog = 0, 0, 0
 
     if tag.find("span", "_1Y6hi _1A8_M"):
@@ -30,21 +32,6 @@ def inform_restaurant(url):
                     visit = int(i.text.split()[-1].replace(",", ""))
                 else:
                     blog = int(i.text.split()[-1].replace(",", ""))
-
-    # 테마키워드
-    Is_tema_keyword = soup.find("h3", "Z6Prg")
-    if Is_tema_keyword:  # 테마키워드가 존재하지 않는 곳도 있음 존재하면 True
-        keyword_list = soup.find_all("li", "_3Ryhx")  # 분위기->~한,인기토픽->~ 의 내용
-
-        tema_keyword = {}
-        for k in keyword_list:
-            key = k.find("span", "_3hvd9").text
-            contents = []
-            for cont in k.find_all("span", "_2irYJ"):
-                contents.append(cont.text)
-            tema_keyword[key] = contents
-    else:
-        tema_keyword = "없음"
 
     # 메뉴
     menu_url = url[:-4] + "menu/list"
@@ -67,7 +54,6 @@ def inform_restaurant(url):
     inform = {}
     inform["이름"] = title
     inform["분류"] = sort
-    inform["분위기(테마키워드)"] = [tema_keyword]
     inform["주요 메뉴"] = ",".join(menu_list)
     inform["평균 가격"] = mean_price
     inform["평점"] = star
