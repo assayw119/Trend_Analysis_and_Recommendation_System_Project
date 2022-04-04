@@ -11,7 +11,7 @@ db = client.test
 ## HTML을 주는 부분
 @app.route('/')
 def home():
-   return render_template('index.html')
+   return render_template('result.html')
 
 @app.route('/memo', methods=['GET'])
 def listing():
