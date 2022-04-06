@@ -50,6 +50,15 @@ def inform_restaurant(url):
             price_list.append(int(price[:-1].replace(",", "")))
     mean_price = int(np.mean(price_list))  # 평균 가격
 
+    # 리뷰
+    review_url = url[:-4] + "review/visitor"
+    review_html = ur.urlopen(review_url)
+    review_soup = bs(review_html.read(), "html.parser")
+    people_give_score = review_soup.find_all("span", "_1fvo3")
+
+    people_give_score = people_give_score[1].text.split()
+    people_give_score = int(people_give_score[2].replace("명", "").replace(",", ""))
+
     # 딕셔너리 정의하기
     inform = {}
     inform["name"] = title
@@ -57,6 +66,6 @@ def inform_restaurant(url):
     inform["main_menu"] = ",".join(menu_list)
     inform["mean_price"] = mean_price
     inform["score"] = star
-    inform["rivew_count"] = blog + visit
-
+    inform["review_count"] = blog + visit
+    inform["people_give_score"] = people_give_score
     return inform

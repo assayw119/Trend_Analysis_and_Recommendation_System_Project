@@ -27,11 +27,14 @@ if __name__ == "__main__":
         result = kakao_inform_restaurant(url)
         info = {
             "name": result["name"],
+            "address": result["address"],
             "sort": result["sort"],
             "menu": result["main_menu"],
             "mean_price": result["mean_price"],
             "score": float(result["score"]),
+            "people_give_score": result["people_give_score"],
             "review_count": int(result["review_count"]),
+            "review_list": result["review_list"],
         }
 
         dpInsert = db.inform.insert_one(info)  # db에 정보 입력

@@ -17,7 +17,11 @@ def kakao_inform_restaurant(url):
         by=By.XPATH, value="/html/body/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/div/h2"
     )
     restaurant_name = name.text  # 음식점 명
-
+    address = driver.find_element(
+        by=By.XPATH,
+        value="/html/body/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div/span[1]",
+    )
+    address_name = address.text
     tag = driver.find_element(
         by=By.XPATH,
         value="/html/body/div[2]/div[2]/div[2]/div[1]/div[1]/div[2]/div/div",
@@ -97,10 +101,12 @@ def kakao_inform_restaurant(url):
             next_page = 2
     inform = {}
     inform["name"] = restaurant_name
+    inform["address"] = address_name
     inform["sort"] = sort
     inform["main_menu"] = ",".join(menu_list)
     inform["mean_price"] = mean_price
     inform["score"] = point
     inform["review_count"] = review_count
-
+    inform["people_give_score"] = cnt
+    inform["review_list"] = review_list
     return inform
