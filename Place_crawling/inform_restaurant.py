@@ -46,9 +46,17 @@ def inform_restaurant(url):
         price = i.find("div", "_3qFuX").text  # 메뉴 가격
         menu_list.append(name)
         if price != "변동" and "원" in price:
+            try:
+                price_list.append(int(price[:-1].replace(",", "")))
+                mean_price = int(np.mean(price_list))
+            except:
 
-            price_list.append(int(price[:-1].replace(",", "")))
-    mean_price = int(np.mean(price_list))  # 평균 가격
+                mean_price = "표기 안함"
+        else:
+            try:
+                mean_price = int(np.mean(price_list))
+            except:
+                mean_price = "표기 안함"  # 평균 가격
 
     # 리뷰
     review_url = url[:-4] + "review/visitor"
@@ -57,7 +65,10 @@ def inform_restaurant(url):
     people_give_score = review_soup.find_all("span", "_1fvo3")
 
     people_give_score = people_give_score[1].text.split()
-    people_give_score = int(people_give_score[2].replace("명", "").replace(",", ""))
+    try:
+        people_give_score = int(people_give_score[2].replace("명", "").replace(",", ""))
+    except:
+        people_give_score = "표기 안함"
 
     # 딕셔너리 정의하기
     inform = {}
