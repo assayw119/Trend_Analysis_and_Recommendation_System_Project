@@ -61,7 +61,7 @@ if __name__ == "__main__":
         driver3.get(url[:-4] + "photo?filterType=내부")
         driver3.implicitly_wait(10)
 
-        review_list = naver_reviews_list(driver1, url, 50)
+        review_list = naver_reviews_list(driver1, url, 10)
         result["reivew_list"] = ",".join(review_list)
 
         img_food = image_crawling(driver2, url, 1)
