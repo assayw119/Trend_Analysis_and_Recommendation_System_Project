@@ -15,7 +15,7 @@ def inform_restaurant(url):
     # 이름,별점,블로그,방문자 리뷰
     title = soup.find("span", "_3XamX").text  # 제목
     sort = soup.find("span", "_3ocDE").text  # 곰탕,설렁탕 < 같은 설명
-
+    address = soup.find("span", "_2yqUQ").text
     # tag = soup.find("div", "_1kUrA")
 
     tag = soup.find("div", "_37n49")
@@ -46,24 +46,34 @@ def inform_restaurant(url):
         price = i.find("div", "_3qFuX").text  # 메뉴 가격
         menu_list.append(name)
         if price != "변동" and "원" in price:
+            try:
+                price_list.append(int(price[:-1].replace(",", "")))
+                mean_price = int(np.mean(price_list))
+            except:
 
-            price_list.append(int(price[:-1].replace(",", "")))
-    mean_price = int(np.mean(price_list))  # 평균 가격
+                mean_price = "표기 안함"
+        else:
+            try:
+                mean_price = int(np.mean(price_list))
+            except:
+                mean_price = "표기 안함"
 
     # 리뷰
     review_url = url[:-4] + "review/visitor"
     review_html = ur.urlopen(review_url)
     review_soup = bs(review_html.read(), "html.parser")
     people_give_score = review_soup.find_all("span", "_1fvo3")
-
     people_give_score = people_give_score[1].text.split()
-    people_give_score = int(people_give_score[2].replace("명", "").replace(",", ""))
-
+    try:
+        people_give_score = int(people_give_score[2].replace("명", "").replace(",", ""))
+    except:
+        people_give_score = "표기 안함"
     # 딕셔너리 정의하기
     inform = {}
     inform["name"] = title
+    inform["address"] = address
     inform["sort"] = sort
-    inform["main_menu"] = ",".join(menu_list)
+    inform["menu"] = ",".join(menu_list)
     inform["mean_price"] = mean_price
     inform["score"] = star
     inform["review_count"] = blog + visit
