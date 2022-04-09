@@ -3754,9 +3754,12 @@ textarea.form-control-lg {
 
 .dropdown-divider {
   height: 0;
-  margin: 0.5rem 0;
+  /*margin: 0.5rem 0;*/
   overflow: hidden;
   border-top: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 30px;
+  margin: 30px;
+  width: 610px;
 }
 
 .dropdown-item {
