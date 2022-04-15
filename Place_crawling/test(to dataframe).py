@@ -37,6 +37,9 @@ if __name__ == "__main__":
                 "people_give_score",
                 "review_count",
                 "review_list",
+                dasd
+                asdas
+                ß
                 "img_food",
                 "img_inner",
             ]
