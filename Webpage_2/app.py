@@ -18,12 +18,20 @@ def home():
 def reuslt():
    return render_template('02_result_page.html')
 
-@app.route('/db', methods=['GET'])
+@app.route('/result', methods=['GET'])
 def select():
-   db_class = db_connect.Database()
+   # db_class = db_connect.Database()
+   #
+   # sql = 'SELECT name FROM test'
+   # row = db_class.executeAll(sql)
 
-   sql = 'SELECT name FROM test'
-   row = db_class.executeAll(sql)
+   db = pymysql.connect(host='localhost', user='root', password='qwedsa2249',
+                        db='test', charset='utf8')
+   cursor = db.cursor()
+   db.commit()
+
+   sql = 'select * from chungmuro limit 5'
+   row = pd.read_sql(sql, db)
 
    print(row)
    return jsonify({'data':row})
