@@ -40,16 +40,38 @@
 
                         for (let i=0; i<data.length; i++) {
                             let name = data[i][0]
+                            let address = data[i][1]
+                            // let sort = data[i]['sort']
+                            // let menu = data[i]['menu']
+                            // let mean_price = data[i]['mean_price']
+                            let score = data[i][5]
+                            // let people_give_score = data[i]['people_give_score']
+                            // let review_count = data[i]['review_count']
+                            let review_list = (data[i][8]||'').split('/')
+                            let img_food = data[i][9]
+                            if (img_food == null) {
+                                img_food = '../static/assets/img/img_nothing.jpeg'
+                                // console.log(name)
+                            } else {
+                                img_food = (data[i][9]||'').split(',')[0]
+                            }
 
-                            let temp_html = `<a href="http://www.naver.com">
-                                                <img src="https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f180_180&src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTEwMjJfMTE5%2FMDAxNjM0ODQwMzE5NzE2.fIiBiGP57IGho5PAmqnX9_VJnTN6PtgHqoyHW8IiUKkg.jLcut4IzhBCtla-ktYSDIMwsbrd0UAKD89y3fXx-h_Mg.JPEG.kuk5837%2FIMG_0666.jpg,https://search.pstatic.net/common/?autoRotate=true&quality=95&type=f180_180&src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA3MzFfMjEx%2FMDAxNjI3NzE0MzY0OTA0.p_oJLnns5VKJJln4CV8U5iq_vwVxVrDTaXSq6zpO900g.bzrqHMpeHP0SCragLb0sXqA1mseQt8-9TACJEegc70Yg.JPEG.9120afz%2FIMG_1112.jpg"
+
+                            // let img_inner = data[i]['img_inner']
+
+                            let temp_html = `<a href="https://map.naver.com/v5/search/${name}/place/" target="_blank">
+                                                <img src= "${img_food}"
                                                     class="food-img" style="float:left;">
                                                 <h2 class="post-title">${name}</h2>
-                                                <h3 class="post-subtitle"">서울특별시 강남구 언주로164길 35 로로</h3>
+                                                <h3 class="post-score" style="float:right">평점: ${score}</h3>
+                                                <h3 class="post-address"">${address}</h3>
+
+                                                <p class="post-review">
+                                                    ${review_list[0]}
+                                                </p>
                                             </a>
-                                            <p class="post-meta">
-                                                리뷰리뷰리뷰리뷰
-                                            </p>
+
+
                                             <!-- Divider-->
                                             <hr class="my-4" />`
                             $('#restaurant-box').append(temp_html)

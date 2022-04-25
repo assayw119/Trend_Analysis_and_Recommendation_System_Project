@@ -40,7 +40,7 @@ def select():
    # row = pd.read_sql(sql, db)
    cursor.execute(sql)
    row = cursor.fetchall()
-   print(row)
+   # print(row)
    return jsonify({'data':row})
 
 if __name__ == '__main__':

@@ -11227,20 +11227,29 @@ header.masthead .site-heading .h1 {
   font-size: 1.875rem;
   margin-top: 1.875rem;
   margin-bottom: 0.625rem;
+  /*width: 33%;*/
 }
-.post-preview > a > .post-subtitle {
+.post-preview > a > .post-address {
   font-size: 1rem;
   font-weight: 300;
   margin-bottom: 0.625rem;
 }
-.post-preview > .post-meta {
+.post-preview > a > .post-review {
   font-size: 1.125rem;
   font-style: italic;
   margin-top: 0;
   color: #6c757d;
+  height: 100px;
 }
-.post-preview > .post-meta > a {
-  text-decoration: none;
+
+.post-preview > a > .post-score {
+  font-size: 1rem;
+  font-weight: 300;
+  /*margin-bottom: 0.625rem;*/
+  color: red;
+  /*width: 33%;*/
+}
+
 }
 @media (min-width: 992px) {
   .post-preview > a > .post-title {
@@ -11250,5 +11259,6 @@ header.masthead .site-heading .h1 {
 
 .food-img {
   padding: 10px;
-  height: 140px;
+  height: 180px;
+  /*width: 33%;*/
 }
