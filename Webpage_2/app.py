@@ -15,10 +15,10 @@ def home():
    return render_template('01_inflow_page.html')
 
 @app.route('/result')
-def reuslt():
+def result():
    return render_template('02_result_page.html')
 
-@app.route('/result', methods=['GET'])
+@app.route('/resultdata', methods=['GET'])
 def select():
    # db_class = db_connect.Database()
    #
@@ -28,11 +28,18 @@ def select():
    db = pymysql.connect(host='localhost', user='root', password='qwedsa2249',
                         db='test', charset='utf8')
    cursor = db.cursor()
-   db.commit()
+   # db.commit()
+   # engine = create_engine('mysql+pymysql://root:qwedsa2249@localhost:3306/test?charset=utf8', encoding='utf-8')
+   # utf8로 이모티콘 등의 문자 인식되지 않는 것 해결 필요
 
-   sql = 'select * from chungmuro limit 5'
-   row = pd.read_sql(sql, db)
+   # conn = engine.connect()
+   # df_name.to_sql(name='chungmuro', con=engine, if_exists='replace', index=False)
+   # conn.close()
 
+   sql = 'select * from chungmuro'
+   # row = pd.read_sql(sql, db)
+   cursor.execute(sql)
+   row = cursor.fetchall()
    print(row)
    return jsonify({'data':row})
 

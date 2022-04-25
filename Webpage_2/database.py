@@ -21,3 +21,11 @@ conn.close()
 sql = 'select * from chungmuro limit 5'
 sql_test = pd.read_sql(sql, db)
 print(sql_test)
+
+sql = 'SELECT * FROM chungmuro'
+cursor.execute(sql)
+data_list = cursor.fetchall()
+# print(data_list)
+
+for i in data_list:
+    print(i[0])
