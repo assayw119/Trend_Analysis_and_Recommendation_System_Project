@@ -17,10 +17,6 @@ def image_crawling(driver, link, cnt):
     img_list = []
     num = 1
     time.sleep(2)
-    name = driver.find_element(
-        by=By.XPATH,
-        value="/html/body/div[3]/div/div/div[2]/div[1]/div[1]/div[1]/span[1]",
-    )
 
     image_path = driver.find_elements(
         by=By.CLASS_NAME,
