@@ -7004,6 +7004,11 @@ textarea.form-control-lg {
   margin-bottom: 3rem !important;
 }
 
+.my-6 {
+  margin-top: 5rem !important;
+  margin-bottom: 5rem !important;
+}
+
 .my-auto {
   margin-top: auto !important;
   margin-bottom: auto !important;
@@ -11259,6 +11264,6 @@ header.masthead .site-heading .h1 {
 
 .food-img {
   padding: 10px;
-  height: 180px;
+  height: 170px;
   /*width: 33%;*/
 }
