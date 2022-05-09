@@ -14,7 +14,7 @@ def crawling(urls, region):
 
     global df
     for idx, url in enumerate(urls):
-
+        print(url)
         print(f"{idx}번째 URL")
         s = time.time()
         result = inform_restaurant(url)
