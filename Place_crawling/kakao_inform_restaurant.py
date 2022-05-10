@@ -53,7 +53,6 @@ def kakao_inform_restaurant(url):
                 ssum += int(i.replace(",", ""))
                 menu_count += 1
             except:
-                print("가격 오류: ", ssum)
                 continue
         mean_price = ssum // menu_count  # 평균 가격대
     except:
