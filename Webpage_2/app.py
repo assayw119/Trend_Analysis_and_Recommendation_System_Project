@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify, request
+from flask import Flask, render_template, jsonify, request, url_for
 import pymysql
 import pandas as pd
 from flask_paginate import Pagination, get_page_args
@@ -14,7 +14,7 @@ cursor = db.cursor(pymysql.cursors.DictCursor)
 def home():
    return render_template('01_inflow_page.html')
 
-@app.route('/result')
+@app.route('/result/')
 def result():
    page = request.args.get('page', 1, type=int)
 
@@ -32,6 +32,7 @@ def result():
    block_num = int((page-1) / block_size)
    block_start = (block_size * block_num) + 1
    block_end = block_start + (block_size - 1)
+   print(block_start, block_end)
 
    return render_template('02_result_page.html',
                           datas = datas,
@@ -40,6 +41,10 @@ def result():
                           block_start = block_start,
                           block_end = block_end,
                           total_page = total_page,)
+
+@app.route('/detail/<address>/<cluster>/<type>')
+def search(address, cluster, food_type):
+   return render_template('03_detail_page.html', address=address, cluster=cluster, food_type=food_type)
 
 @app.route('/detail')
 def detail():
