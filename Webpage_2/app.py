@@ -1,13 +1,11 @@
 from flask import Flask, render_template, jsonify, request, url_for
 import pymysql
 import pandas as pd
+from models import Database
 from flask_paginate import Pagination, get_page_args
 
 app = Flask(__name__)
 
-db = pymysql.connect(host='localhost', user='root', password='qwedsa2249',
-                        db='test', charset='utf8')
-cursor = db.cursor(pymysql.cursors.DictCursor)
 
 ## HTML을 주는 부분
 @app.route('/')
@@ -20,8 +18,8 @@ def result():
 
    limit = 10
    sql = 'select * from chungmuro;'
-   cursor.execute(sql)
-   datas_dict = cursor.fetchall()
+   database = Database()
+   datas_dict = database.executeAll(sql)
 
    datas = pd.DataFrame(datas_dict)
 
@@ -42,36 +40,26 @@ def result():
                           block_end = block_end,
                           total_page = total_page,)
 
-@app.route('/detail/<address>/<cluster>/<type>')
-def search(address, cluster, food_type):
-   return render_template('03_detail_page.html', address=address, cluster=cluster, food_type=food_type)
+# @app.route('/detail/<address>/<cluster>/<type>')
+# def search(address, cluster, food_type):
+#    return render_template('03_detail_page.html', address=address, cluster=cluster, food_type=food_type)
 
 @app.route('/detail')
 def detail():
    return render_template('03_detail_page.html')
 
-
-@app.route('/resultdata', methods=['GET'])
+@app.route('/resultdata', methods=['GET', 'POST'])
 def select():
 
+   sql = 'select * from chungmuro;'
+   database = Database()
+   row = database.executeAll(sql)
+   return jsonify({'data':row})
 
-   # count_sql = 'select count(*) from chungmuro'
-   # cursor.execute(count_sql)
-   # total_cnt = cursor.fetchall()
-   # print(total_cnt[0][0])
-   # total_page = round(total_cnt / per_page)
+# @app.route('/detaildata', methods=['POST'])
+# def info():
+    # restaurant = request.form
 
-   sql2 = 'select * from chungmuro;'
-   cursor.execute(sql2)
-   row2 = cursor.fetchall()
-
-
-   # print(row)
-   return jsonify({'data':row2})
-
-# @app.route('/resultdata', method=['POST'])
-# Default setting
-# pageLimit = 10
 
 
 
