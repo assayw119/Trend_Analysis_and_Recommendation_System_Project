@@ -68,9 +68,12 @@ def kakao_inform_restaurant(url):
     )  # 처음에는 2페이지로 가는 파라미터가 1이지만, 한번 다음을 클릭한다면, 2로 바뀐다
     next_page = 1
     while 1:
+
         if len(review_list) >= 30:
+            print("break")
             break
         for n in range(1, 5 + 1):
+
             try:
                 review_coment = driver.find_element(
                     by=By.XPATH,
@@ -85,7 +88,6 @@ def kakao_inform_restaurant(url):
         if no_review:
             break
         try:
-
             next_page_button = driver.find_element(
                 by=By.XPATH,
                 value=f"/html/body/div[2]/div[2]/div[2]/div[6]/div[3]/div/a[{next_page}]",
@@ -94,7 +96,7 @@ def kakao_inform_restaurant(url):
             time.sleep(3)
             next_page += 1
         except:
-            pass
+            break
         try:
             if next_page == 6:
                 next_page_button = driver.find_element(
@@ -128,4 +130,5 @@ def kakao_inform_restaurant(url):
     inform["review_count"] = review_count
     inform["people_give_score"] = cnt
     inform["review_list"] = review_list
+
     return inform
