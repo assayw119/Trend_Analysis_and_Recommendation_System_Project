@@ -65,7 +65,7 @@ if __name__ == "__main__":
                     [df, pd.DataFrame(info, index=[cnt])], ignore_index=False
                 )
                 cnt += 1
-        df.to_csv("road" + f"{dong}_2.csv", encoding="utf-8-sig")
+        df.to_csv(road_2 + f"{dong}_2.csv", encoding="utf-8-sig")
 
         e = time.time()
         print("1 region learning time : ", e - s, "s")
