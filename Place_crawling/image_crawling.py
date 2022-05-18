@@ -6,10 +6,10 @@ import time
 
 # 일단 음식점 하나만!
 
-cnt = 1
-
 
 def image_crawling(driver, link, cnt):
+    driver.implicitly_wait(10)
+
     scroll_repeat = cnt // 30
     for i in range(scroll_repeat):
         driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
