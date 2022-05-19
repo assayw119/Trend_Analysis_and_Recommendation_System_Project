@@ -33,6 +33,10 @@ def inform_restaurant(url):
                 else:
                     blog = int(i.text.split()[-1].replace(",", ""))
 
+    addres = "표기 안함"
+    if soup.find("span", "_2yqUQ"):
+        addres = soup.find("span", "_2yqUQ").text
+
     # 메뉴
     menu_url = url[:-4] + "menu/list"
     menu_html = ur.urlopen(menu_url)
@@ -73,6 +77,7 @@ def inform_restaurant(url):
     # 딕셔너리 정의하기
     inform = {}
     inform["name"] = title
+    inform["address"] = addres
     inform["sort"] = sort
     inform["menu"] = ",".join(menu_list)
     try:
