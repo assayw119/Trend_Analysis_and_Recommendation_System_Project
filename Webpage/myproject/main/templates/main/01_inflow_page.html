@@ -20,6 +20,8 @@
     <!-- Custom styles for this template-->
     <link href="../static/css/sb-admin-2.css" rel="stylesheet">
     <link href="../static/css/01_inflow_page.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script> -->
 
 </head>
 
@@ -31,7 +33,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="selectbox_example.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -141,50 +143,45 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
             <hr class="content_divider">
-            <div id="content">
+            <div id="content" style="text-align: center;">
                 <header class="masthead">
-                    <div class="container position-relative">
-                        <div class="row justify-content-center">
-                            <div class="col-xl-6">
-                                <div class="text-center text-black-50">
-                                    <!-- Page heading-->
-                                    <h1 class="mb-5">주소를 설정해주세요.</h1>
-                                    <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
-
-                                        <div class="row justify-content-center text-center">
-                                            <div>
-                                                <select id="sido" style="width: 120px;">
-                                                    <option value="">시/도</option>
-                                                </select>
-                                                <select id="sigugun" style="width: 120px;">
-                                                    <option value="">시/구/군</option>
-                                                </select>
-                                                <select id="dong" style="width: 120px;">
-                                                    <option value="">읍/면/동</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                    <!-- Page heading-->
+                    <h1 class="mb-5">주소를 설정해주세요.</h1>
+                    <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN" action="{% url 'restaurant' %}" method="GET">
+                        {% csrf_token %}
+                        <div class="row justify-content-center text-center">
+                            <div>
+                                <select name='sido' id="sido" style="width: 120px;">
+                                    <option value="">시/도</option>
+                                </select>
+                                <select name='sigugun' id="sigugun" style="width: 120px;">
+                                    <option value="">시/구/군</option>
+                                </select>
+                                <select name='dong' id="dong" style="width: 120px;">
+                                    <option value="">읍/면/동</option>
+                                </select>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </header>
             </div>
             <hr class="content_divider">
             <!-- Main Content -->
-            <div id="content" class="text-center">
-                <header class="masthead">
+            <div id="content" class="text-center" style="text-align: center;">
                     
-                    <!-- Page heading-->
-                    <h1 class="mb-5">선호하는 분위기를 선택해주세요.</h1>
-                    
-                    <div class="row justify-content-center" >
+                <!-- Page heading-->
+                <h1 class="mb-5">선호하는 분위기를 선택해주세요.</h1>
+                <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN" action="{% url 'restaurant' %}" method="GET">
+                    {% csrf_token %}
+                    <div style="text-align: center;">
+                        <!-- <py-script>print('hello')</py-script> -->
                         {% for i in cluster_imgs %}
-                        <a href="" style="margin-left: 10px"><img src="{{i.img_summary}}" class="cluster-img" style="float:left;"></a>
+                        {% if i != None %}
+                        <img src="{{i.img_summary}}" name="inner_img" class="cluster-img" style="display: inline-block; text-align: center;">
+                        {% endif %}
                         {% endfor %}
-                    </div>       
-                </header>
+                    </div>
+                </form>
             </div>
             <hr class="content_divider">
             <!-- Main Content -->
@@ -236,7 +233,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>2022-1 Data Science Capston Design</span>
                     </div>
                 </div>
             </footer>
