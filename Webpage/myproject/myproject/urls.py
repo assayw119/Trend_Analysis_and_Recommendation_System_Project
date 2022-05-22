@@ -22,4 +22,6 @@ urlpatterns = [
     path('', views.showhome, name='showhome'),
     path('result/', views.showresult, name='showresult'),
     path('detail/', views.showdetail, name='showdetail'),
+
+    path('result/', views.showcluster, name='showcluster'),
 ]

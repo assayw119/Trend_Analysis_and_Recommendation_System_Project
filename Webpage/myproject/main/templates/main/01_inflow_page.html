@@ -153,12 +153,13 @@
 
                                         <div class="row justify-content-center text-center">
                                             <div>
-                                                <select id="sido" style="width: 120px;">시/도</option>
+                                                <select id="sido" style="width: 120px;">
+                                                    <option value="">시/도</option>
                                                 </select>
-                                                <select id="sigugun" style="width: 120px;>
+                                                <select id="sigugun" style="width: 120px;">
                                                     <option value="">시/구/군</option>
                                                 </select>
-                                                <select id="dong" style="width: 120px;>
+                                                <select id="dong" style="width: 120px;">
                                                     <option value="">읍/면/동</option>
                                                 </select>
                                             </div>
@@ -179,11 +180,9 @@
                     <h1 class="mb-5">선호하는 분위기를 선택해주세요.</h1>
                     
                     <div class="row justify-content-center" >
-                        <a href="" style="margin-left: 10px"><img src="../static/assets/img/cluster1.jpg" class="cluster-img" style="float:left;"></a>
-                        <a href="" style="margin-left: 10px"><img src="../static/assets/img/cluster2.jpg" class="cluster-img" style="float:left;"></a>
-                        <a href="" style="margin-left: 10px"><img src="../static/assets/img/cluster3.jpg" class="cluster-img" style="float:left;"></a>
-                        <a href="" style="margin-left: 10px"><img src="../static/assets/img/cluster4.jpg" class="cluster-img" style="float:left;"></a>
-                        <a href="" style="margin-left: 10px"><img src="../static/assets/img/cluster5.jpg" class="cluster-img" style="float:left;"></a>
+                        {% for i in cluster_imgs %}
+                        <a href="" style="margin-left: 10px"><img src="{{i.img_summary}}" class="cluster-img" style="float:left;"></a>
+                        {% endfor %}
                     </div>       
                 </header>
             </div>

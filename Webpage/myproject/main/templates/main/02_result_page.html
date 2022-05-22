@@ -68,7 +68,7 @@
                     <div id="restaurant-box" class="post-preview">
                         {% for info in restaurant %}
 
-                        <h2 class="post-title" style="left">{{info.id_num}}. {{info.name}}</h2>
+                        <h2 class="post-title" style="left;">{{info.id_num}}. {{info.name}}</h2>
                         <a href="https://map.naver.com/v5/search/{{info.name}}/place/" target="_blank">
                             <div class="progress" style="margin: 20px;">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="{{info.pos_rev_rate}}" aria-valuemin="0" aria-valuemax="100" style="width: {{info.pos_rev_rate}}%">Positive</div>
