@@ -118,4 +118,4 @@ df = df.drop(
 df = df.reset_index(drop=True).reset_index().rename(columns={"index": "id"})
 
 
-# df.to_csv('naver_kakao_matzip.csv',encoding='utf-8-sig')
+df.to_csv("naver_kakao_matzip.csv", encoding="utf-8-sig")
