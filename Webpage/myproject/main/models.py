@@ -109,11 +109,25 @@ class Demo(models.Model):
 
     def cluster_repr(self):
         result = []
-        while len(result) < 5:
-            for i in range(5):
-                if self.clustering == i:
-                    result.append(self.img_inner.split(',')[0])
-        return result
+        # while len(result) < 5:
+        #     for i in range(5):
+        #         if self.clustering == i:
+        #             result.append(self.img_inner.split(',')[0])
+        # return result
+        # for i in range(5):
+        #     for j in self.clustering:
+        #         if j == i:
+        #             result.append(self.img_inner.split(',')[0])
+        #             break
+        # return result
+        return self.img_inner.split(',')[0]
+    
+    def img_summary(self):
+        if self.img_inner:
+            if ',' in self.img_inner:
+                return self.img_inner.split(',')[0]
+    
+
 
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
