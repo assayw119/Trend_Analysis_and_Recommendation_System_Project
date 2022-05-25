@@ -78,8 +78,7 @@ class AuthUserUserPermissions(models.Model):
 
 
 class Demo(models.Model):
-    id = models.AutoField(primary_key=True)
-    id_num = models.BigIntegerField(blank=True, null=True)
+    id = models.BigIntegerField(primary_key=True)
     name = models.TextField(blank=True, null=True)
     dong = models.TextField(blank=True, null=True)
     sort_x = models.TextField(blank=True, null=True)
@@ -103,7 +102,10 @@ class Demo(models.Model):
     def review_summary(self):
         if self.naver_review_list:
             if '/' in self.naver_review_list:
-                return self.naver_review_list.split('/')[0]
+                review = self.naver_review_list.split('/')[0]
+                if len(review) > 160:
+                    review = review[:160] + "..."
+                return review
         else:
             return self.naver_review_list
 
@@ -126,6 +128,11 @@ class Demo(models.Model):
         if self.img_inner:
             if ',' in self.img_inner:
                 return self.img_inner.split(',')[0]
+    
+    def food_list(self):
+        if self.img_food:
+            if ',' in self.img_food:
+                return self.img_food.split(',')
     
 
 
@@ -175,7 +182,7 @@ class DjangoSession(models.Model):
 
 
 class MainDemo(models.Model):
-    id_num = models.BigIntegerField(blank=True, null=True)
+    id = models.BigIntegerField(primary_key=True)
     name = models.TextField(blank=True, null=True)
     dong = models.TextField(blank=True, null=True)
     sort_x = models.TextField(blank=True, null=True)

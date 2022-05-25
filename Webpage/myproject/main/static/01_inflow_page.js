@@ -6,6 +6,13 @@ function submit() {
     console.log(num_sido, num_sigugun, num_dong)
 }
 
+function choice() {
+    var image = document.getElementById('img_mood');
+    console.log(image)
+    document.getElementById('img_mood').style.color='blue';
+    var source = image.src;
+    window.open(source);
+}
 
 // 행정동 표시
 var hangjungdong = {sido:[

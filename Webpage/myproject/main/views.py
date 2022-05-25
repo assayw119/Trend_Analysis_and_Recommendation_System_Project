@@ -21,8 +21,9 @@ def showresultall(request):
 
     return render(request, 'main/02_result_page.html', {'restaurant':restaurant})
 
-def showdetail(request):
-    return render(request, 'main/03_detail_page.html')
+def showdetail(request,id):
+    restaurant = get_object_or_404(Demo, pk=id)
+    return render(request, 'main/03_detail_page.html', {'restaurant':restaurant})
 
 def category(request):
     if request.method=='GET':
