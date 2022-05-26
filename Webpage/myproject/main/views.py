@@ -1,3 +1,4 @@
+from gettext import GNUTranslations
 from unicodedata import name
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Demo
@@ -19,7 +20,22 @@ def showresultall(request):
     # print(restaurant['name'])
     restaurant = Demo.objects.all()
 
-    return render(request, 'main/02_result_page.html', {'restaurant':restaurant})
+    if request.method=='GET':
+        sido = request.GET.get('sido')
+        sigugun = request.GET.get('sigugun')
+        dong = request.GET.get('dong')
+        img = request.GET.get('inner_img')
+        food = request.GET.get('food')
+        context = {
+            'sido':sido,
+            'sigugun':sigugun,
+            'dong':dong,
+            'image':img,
+            'food':food,
+            'restaurant':restaurant
+        }
+
+    return render(request, 'main/02_result_page.html', context)
 
 def showdetail(request,id):
     restaurant = get_object_or_404(Demo, pk=id)
@@ -39,5 +55,20 @@ def category(request):
         restaurant.dong = dong
         restaurant.img = img
         restaurant.food = food
-        restaurant.save()
-        return redirect('main/02_result_page.html', restaurant)
+        # restaurant.save()
+        context = {
+            'sido':sido,
+            'sigugun':sigugun,
+            'dong':dong,
+            'image':img,
+            'food':food
+        }
+        return render(request, '02_result_page.html', context)
+
+
+# def address(request):
+#     if request.method == 'GET':
+#         sido = request.GET.get('sido')
+#         sigugun = request.GET.get('sigugun')
+#         dong = request.GET.get('dong')
+#         return redirect('main/02_result_page.html', {'sido':sido, 'sigugun':sigugun, 'dong':dong'})

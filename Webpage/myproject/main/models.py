@@ -5,8 +5,9 @@
 #   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
+from re import A
 from django.db import models
-
+import random
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
@@ -127,7 +128,12 @@ class Demo(models.Model):
     def img_summary(self):
         if self.img_inner:
             if ',' in self.img_inner:
-                return self.img_inner.split(',')[0]
+                return random.choice(self.img_inner.split(','))
+
+    def food_summary(self):
+        if self.img_food:
+            if ',' in self.img_food:
+                return self.img_food.split(',')[0]
     
     def food_list(self):
         if self.img_food:

@@ -64,9 +64,13 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
+                    {{sido}}{{sigugun}}{{dong}}
                     <!-- Post preview-->
                     <div id="restaurant-box" class="post-preview">
+                        
                         {% for info in restaurant %}
+                        {% if '금천' in info.address %}
+                        
 
                         <h2 class="post-title" style="left;">{{info.id}}. {{info.name}}</h2>
                         <a href="{% url 'showdetail' info.id %}">
@@ -77,7 +81,7 @@
                             <img src= "../static/assets/img/img_nothing.jpeg"
                                 class="food-img" style="float:left;">
                             {% else %}
-                            <img src= "{{info.img_food}}"
+                            <img src= "{{info.food_summary}}"
                                 class="food-img" style="float:left;">
                             {% endif %}
                             <h3 class="post-score" style="float:right">평점: {{info.total_score}}</h3>
@@ -91,6 +95,7 @@
                         
                         <!-- Divider-->
                         <hr class="my-6" />
+                        {% endif %}
                         {% endfor %}
                     </div>
                 </div>

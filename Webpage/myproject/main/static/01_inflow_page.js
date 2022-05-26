@@ -8,7 +8,7 @@ function submit() {
 
 function choice() {
     var image = document.getElementById('img_mood');
-    console.log(image)
+    // console.log(image)
     document.getElementById('img_mood').style.color='blue';
     var source = image.src;
     window.open(source);

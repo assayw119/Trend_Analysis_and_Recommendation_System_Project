@@ -137,7 +137,8 @@
         </ul>
         <!-- End of Sidebar -->
 
-
+        <form id="content-wrapper" class="form-subscribe d-flex flex-column" id="contactForm" data-sb-form-api-token="API_TOKEN" action="{% url 'showresultall' %}" method="GET">
+        {% csrf_token %}
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
@@ -146,8 +147,7 @@
                 <header class="masthead">
                     <!-- Page heading-->
                     <h1 class="mb-5">주소를 설정해주세요.</h1>
-                    <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN" action="{% url 'restaurant' %}" method="GET">
-                        {% csrf_token %}
+                    
                         <div class="row justify-content-center text-center">
                             <div>
                                 <select name='sido' id="sido" style="width: 120px;">
@@ -172,64 +172,40 @@
                     <!-- Page heading-->
                     <h1 class="mb-5">선호하는 음식을 선택해주세요.</h1>
                     
-                    <div class="dropdown mb-4">
-                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            선택
-                        </button>
-                        <div class="dropdown-menu animated--fade-in" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 38px, 0px); top: 0px; left: 0px; will-change: transform;">
-                            <a class="dropdown-item" href="#">돈까스/회/일식</a>
-                            <a class="dropdown-item" href="#">중식</a>
-                            <a class="dropdown-item" href="#">치킨/피자</a>
-                            <a class="dropdown-item" href="#">백반/죽</a>
-                            <a class="dropdown-item" href="#">라면/국수/냉면</a>
-                            <a class="dropdown-item" href="#">라이스/볶음밥/덮밥</a>
-                            <a class="dropdown-item" href="#">카페/브런치/디저트</a>
-                            <a class="dropdown-item" href="#">호프/맥주</a>
-                            <a class="dropdown-item" href="#">분식/떡볶이</a>
-                            <a class="dropdown-item" href="#">고기/구이/족발</a>
-                        </div>
-                    </div>
+                    <select class="form-select text-center" name="food" id="floatingSelectGrid" aria-label="Floating label select example">
+                        <option selected>종류</option>
+                        <option value="1">돈까스/회/일식</option>
+                        <option value="2">중식</option>
+                        <option value="3">치킨/피자</option>
+                        <option value="4">백반/죽</option>
+                        <option value="5">라면/국수/냉면</option>
+                        <option value="6">라이스/볶음밥/덮밥</option>
+                        <option value="7">카페/브런치/디저트</option>
+                        <option value="8">호프/맥주</option>
+                        <option value="9">분식/떡볶이</option>
+                        <option value="10">고기/구이/족발</option>
+                    </select>
                 </header>
             </div>
+
             <hr class="content_divider">
             <!-- Main Content -->
             <div id="content" class="text-center" style="text-align: center;">
                     
                 <!-- Page heading-->
                 <h1 class="mb-5">선호하는 분위기를 선택해주세요.</h1>
-                <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN" action="{% url 'restaurant' %}" method="GET">
-                    {% csrf_token %}
-                    <div style="text-align: center;">
-                        {% for i in cluster_imgs %}
-                        {% if i != None %}
-                        <img src="{{i.img_summary}}" id="img_mood" name="{{i.id_num}}" class="cluster-img" style="display: inline-block; text-align: center;" onclick="choice()">
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                </form>
+                <div style="text-align: center;">
+                    {% for i in cluster_imgs %}
+                    {% if i != None %}
+                    <img src="{{i.img_summary}}" id="img_mood" name="{{i.id_num}}" class="cluster-img" style="display: inline-block; text-align: center;" onclick="choice()">
+                    {% endif %}
+                    {% endfor %}
+                </div>
             </div>
             <hr class="content_divider">
             <!-- End of Main Content -->
             <div class="col text-center">
-                <button class="btn btn-primary btn-lg" id="submitButton" type="submit" onclick="submit()">Submit</button>
-                <!-- Submit success message-->
-                <!---->
-                <!-- This is what your users will see when the form-->
-                <!-- has successfully submitted-->
-                <div class="d-none" id="submitSuccessMessage">
-                    <div class="text-center mb-3">
-                        <div class="fw-bolder">Form submission successful!</div>
-                        <p>To activate this form, sign up at</p>
-                        <a class="text-white" href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                    </div>
-                </div>
-                <!-- Submit error message-->
-                <!---->
-                <!-- This is what your users will see when there is-->
-                <!-- an error submitting the form-->
-                <div class="d-none" id="submitErrorMessage">
-                    <div class="text-center text-danger mb-3">Error sending message!</div>
-                </div>
+                <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
             </div>
 
             <!-- Footer -->
