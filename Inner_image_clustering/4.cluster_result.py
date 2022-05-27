@@ -8,7 +8,6 @@ from mpl_toolkits.mplot3d import Axes3D
 from mpl_toolkits.mplot3d import proj3d
 
 
-
 dir = 'place_rgb_avg.csv'
 
 
