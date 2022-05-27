@@ -7,10 +7,8 @@ from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from mpl_toolkits.mplot3d import proj3d
 
-import warnings
-warnings.filterwarnings('ignore')
 
-dir = 'place_rgb_avg (2).csv'
+dir = 'place_rgb_avg.csv'
 
 
 train_data = pd.read_csv(dir)
@@ -52,7 +50,7 @@ print(pred[:10])
 
 clust_df2 = df_f.copy()
 clust_df2['clust'] = pred
-clust_df2.to_csv(r'C:\Users\system888\Desktop\git\Trend_Analysis_and_Recommendation_System_Project\Inner_image_clustering\\result2.csv',index= False)
+clust_df2.to_csv('\Inner_image_clustering\\result.csv',index= False)
 
 
 fig = plt.figure(figsize=(8, 8))

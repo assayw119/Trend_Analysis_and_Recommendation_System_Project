@@ -67,7 +67,7 @@ print(place_avg)
 
 df_rgb = pd.DataFrame(place_avg)
 df_rgb = df_rgb.rename(columns={0: 'R',1:'G',2:'B'})
-df_rgb.to_csv('place_rgb_avg2.csv',index=False)
+df_rgb.to_csv('place_rgb_avg.csv',index=False)
 
 
 
