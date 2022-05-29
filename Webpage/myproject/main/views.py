@@ -18,7 +18,7 @@ def showresultall(request):
     # data = database.executeAll(sql)
     # restaurant = pd.DataFrame(data)
     # print(restaurant['name'])
-    restaurant = Demo.objects.all()
+    restaurant = Demo.objects.all().order_by('-total_score','-pos_rev_rate')
 
     if request.method=='GET':
         sido = request.GET.get('sido')

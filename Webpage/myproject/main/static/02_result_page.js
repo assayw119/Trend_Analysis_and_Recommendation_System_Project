@@ -27,6 +27,22 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 })
 
+
+var foodName = {food:[
+    {food:'1', name:'돈까스, 회, 일식'},
+    {food:'2', name:'중식'},
+    {food:'3', name:'치킨, 피자'},
+    {food:'4', name:'백반, 죽'},
+    {food:'5', name:'라면, 국수, 냉면'},
+    {food:'6', name:'라이스, 볶음밥, 덮밥'},
+    {food:'7', name:'카페, 브런치, 디저트'},
+    {food:'8', name:'호프, 맥주'},
+    {food:'9', name:'분식, 떡볶이'},
+    {food:'10', name:'고기, 구이, 족발'},
+    {food:'11', name:'양식'}
+]};
+
+
 //
 // $(document).ready(function () {
 //     restaurant();

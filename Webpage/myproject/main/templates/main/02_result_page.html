@@ -64,15 +64,15 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
-                    {{sido}}{{sigugun}}{{dong}}
+                    {{sido}}{{sigugun}}{{dong}}{{food}}
                     <!-- Post preview-->
                     <div id="restaurant-box" class="post-preview">
                         
                         {% for info in restaurant %}
-                        {% if '금천' in info.address %}
+                        {% if '성북' in info.address %}
                         
 
-                        <h2 class="post-title" style="left;">{{info.id}}. {{info.name}}</h2>
+                        <h2 class="post-title" style="left;">{{info.name}}</h2>
                         <a href="{% url 'showdetail' info.id %}">
                             <div class="progress" style="margin: 20px;">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="{{info.pos_rev_rate}}" aria-valuemin="0" aria-valuemax="100" style="width: {{info.pos_rev_rate}}%">Positive</div>

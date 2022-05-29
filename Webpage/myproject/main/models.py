@@ -109,32 +109,20 @@ class Demo(models.Model):
                 return review
         else:
             return self.naver_review_list
-
-    def cluster_repr(self):
-        result = []
-        # while len(result) < 5:
-        #     for i in range(5):
-        #         if self.clustering == i:
-        #             result.append(self.img_inner.split(',')[0])
-        # return result
-        # for i in range(5):
-        #     for j in self.clustering:
-        #         if j == i:
-        #             result.append(self.img_inner.split(',')[0])
-        #             break
-        # return result
-        return self.img_inner.split(',')[0]
     
+    # 음식점 내부 이미지 반복출력 위해 split 후 리스트로 반환
     def img_summary(self):
         if self.img_inner:
             if ',' in self.img_inner:
                 return random.choice(self.img_inner.split(','))
 
+    # 음식점 대표 음식 이미지
     def food_summary(self):
         if self.img_food:
             if ',' in self.img_food:
                 return self.img_food.split(',')[0]
     
+    # 음식점 음식 이미지 반복출력
     def food_list(self):
         if self.img_food:
             if ',' in self.img_food:
