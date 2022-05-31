@@ -22,6 +22,6 @@ urlpatterns = [
     path('', views.showhome, name='showhome'),
     path('resultall/', views.showresultall, name='showresultall'),
     path('result/<str:id>', views.showdetail, name='showdetail'),
-    path('result/', views.category, name='restaurant'),
+    # path('result/', views.category, name='restaurant'),
     # path('address', views.address, name='address')
 ]

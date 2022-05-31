@@ -5,7 +5,8 @@
     <title>Title</title>
     <!-- Custom styles for this template-->
     <link href="../static/css/sb-admin-2.css" rel="stylesheet">
-    <link href="../static/css/03_detail_page.css?a" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="../static/css/03_detail_page.css" rel="stylesheet" />
     
 </head>
 <body>
@@ -27,28 +28,65 @@
             </div>
         </div>
     </nav>
-
-    <div id="slideShow">
-        <ul class="slides">
-            {% for i in restaurant.food_list %}
-            <li><img src="{{i}}" alt="" class="food-img"></li>
-            {% endfor %}
-        </ul>  
-        <p class="controller">
-            
-            <!-- &lang: 왼쪽 방향 화살표
-            &rang: 오른쪽 방향 화살표 -->
-            <span class="prev">&lang;</span>  
-            <span class="next">&rang;</span>
-        </p>
-    </div>
-    <div>
-        <h1>{{restaurant.name}}</h1><p>{{restaurant.total_score}}</p><br><br>
-        <h3>식당 주소 : {{restaurant.address}}</h3><br><br>
-        <h4>{{restaurant.sort_x}}</h4><br><br>
-        <h4>메뉴 : {{restaurant.menu_x}}</h4><br><br>
-        <p>리뷰 : {{restaurant.naver_review_list}}</p><br><br>
-    </div>
+    <!-- Product section-->
+    <section class="py-5">
+        <div class="container px-1 px-lg-0 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6 px-lg-0">
+                    <div id="slideShow">
+                        <ul class="slides">
+                            {% for i in restaurant.food_list %}
+                            <li><img src="{{i}}" alt="food-list" class="food-img"></li>
+                            {% endfor %}
+                        </ul>  
+                        <p class="controller">
+                            
+                            <!-- &lang: 왼쪽 방향 화살표
+                            &rang: 오른쪽 방향 화살표 -->
+                            <span class="prev">&lang;</span>  
+                            <span class="next">&rang;</span>
+                        </p>
+                    </div>    
+                    <div id="slideShow">
+                        <ul class="slides">
+                            {% for j in restaurant.rest_list %}
+                            <li><img src="{{j}}" alt="restaurant-list" class="rest-img"></li>
+                            {% endfor %}
+                        </ul>  
+                        <p class="controller">
+                            
+                            <!-- &lang: 왼쪽 방향 화살표
+                            &rang: 오른쪽 방향 화살표 -->
+                            <span class="prev">&lang;</span>  
+                            <span class="next">&rang;</span>
+                        </p>
+                    </div>    
+                </div>
+                <div class="col-md-6">
+                    <div class="small mb-1">SKU: BST-498</div>
+                    <h1 class="display-5 fw-bolder">{{restaurant.name}}</h1>
+                    <div class="fs-5 mb-5">
+                        <span class="text-decoration-line-through">{{restaurant.total_score}}</span>
+                        <span>$40.00</span>
+                    </div>
+                    <span>식당 주소 : {{restaurant.address}}</span><br><br>
+                    <hr class="my-6" />
+                    <span>{{restaurant.sort_x}}</span><br><br>
+                    <hr class="my-6" />
+                    <span>메뉴 : {{restaurant.menu_x}}</span><br><br>
+                    <hr class="my-6" />
+                    <p class="lead">리뷰 : {{restaurant.naver_review_list}}</p>
+                    <div class="d-flex">
+                        <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                        <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                            <i class="bi-cart-fill me-1"></i>
+                            Add to cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 

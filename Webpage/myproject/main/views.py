@@ -43,26 +43,26 @@ def showdetail(request,id):
     restaurant = get_object_or_404(Data, pk=id)
     return render(request, 'main/03_detail_page.html', {'restaurant':restaurant})
 
-def category(request):
-    if request.method=='GET':
-        sido = request.GET.get('sido')
-        sigugun = request.GET.get('sigugun')
-        img = request.GET.get('inner_img')
-        food = request.GET.get('food')
+# def category(request):
+#     if request.method=='GET':
+#         sido = request.GET.get('sido')
+#         sigugun = request.GET.get('sigugun')
+#         img = request.GET.get('inner_img')
+#         food = request.GET.get('food')
 
-        restaurant = RestaurantForm()
-        restaurant.sido = sido
-        restaurant.sigugun = sigugun
-        restaurant.img = img
-        restaurant.food = food
-        # restaurant.save()
-        context = {
-            'sido':sido,
-            'sigugun':sigugun,
-            'image':img,
-            'food':food
-        }
-        return render(request, '02_result_page.html', context)
+#         restaurant = RestaurantForm()
+#         restaurant.sido = sido
+#         restaurant.sigugun = sigugun
+#         restaurant.img = img
+#         restaurant.food = food
+#         # restaurant.save()
+#         context = {
+#             'sido':sido,
+#             'sigugun':sigugun,
+#             'image':img,
+#             'food':food
+#         }
+#         return render(request, '02_result_page.html', context)
 
 
 # def address(request):

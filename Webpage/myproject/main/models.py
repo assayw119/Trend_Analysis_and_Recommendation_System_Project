@@ -128,6 +128,16 @@ class Data(models.Model):
         if self.img_food:
             if ',' in self.img_food:
                 return self.img_food.split(',')
+        else:
+            return "../static/assets/img/img_nothing.jpeg"
+    
+    # 음식점 내부 이미지 반복출력
+    def rest_list(self):
+        if self.img_inner:
+            if ',' in self.img_inner:
+                return self.img_inner.split(',')
+        else:
+            return "../static/assets/img/img_nothing.jpeg"
     
 
 
