@@ -64,18 +64,17 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
-                    {{sido}}{{sigugun}}{{dong}}{{food}}
                     <!-- Post preview-->
                     <div id="restaurant-box" class="post-preview">
-                        
                         {% for info in restaurant %}
-                        {% if '성북' in info.address %}
+                        {% if address == info.region_code %}
+                        {% if food == info.cluster %}
                         
 
                         <h2 class="post-title" style="left;">{{info.name}}</h2>
                         <a href="{% url 'showdetail' info.id %}">
                             <div class="progress" style="margin: 20px;">
-                                <div class="progress-bar" role="progressbar" aria-valuenow="{{info.pos_rev_rate}}" aria-valuemin="0" aria-valuemax="100" style="width: {{info.pos_rev_rate}}%">Positive</div>
+                                <div class="progress-bar" role="progressbar" aria-valuenow="{{info.review_score}}" aria-valuemin="0" aria-valuemax="100" style="width: {{info.review_score}}%">Positive</div>
                             </div>
                             {% if info.img_food == None %}
                             <img src= "../static/assets/img/img_nothing.jpeg"
@@ -95,6 +94,7 @@
                         
                         <!-- Divider-->
                         <hr class="my-6" />
+                        {% endif %}
                         {% endif %}
                         {% endfor %}
                     </div>

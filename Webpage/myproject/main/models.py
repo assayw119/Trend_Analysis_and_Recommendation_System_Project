@@ -78,10 +78,9 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
-class Demo(models.Model):
+class Data(models.Model):
     id = models.BigIntegerField(primary_key=True)
     name = models.TextField(blank=True, null=True)
-    dong = models.TextField(blank=True, null=True)
     sort_x = models.TextField(blank=True, null=True)
     menu_x = models.TextField(blank=True, null=True)
     naver_review_list = models.TextField(blank=True, null=True)
@@ -92,12 +91,14 @@ class Demo(models.Model):
     kakao_review_list = models.TextField(blank=True, null=True)
     total_score = models.FloatField(blank=True, null=True)
     total_review_count = models.BigIntegerField(blank=True, null=True)
-    clustering = models.BigIntegerField(blank=True, null=True)
-    pos_rev_rate = models.FloatField(db_column='pos_rev_Rate', blank=True, null=True)  # Field name made lowercase.
+    category = models.BigIntegerField(blank=True, null=True)
+    cluster = models.BigIntegerField(blank=True, null=True)
+    review_score = models.FloatField(blank=True, null=True)
+    region_code = models.BigIntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'demo'
+        db_table = 'data'
     
     # 결과 페이지에서 첫번째 리뷰만 보여주기
     def review_summary(self):
@@ -175,10 +176,9 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
-class MainDemo(models.Model):
+class MainData(models.Model):
     id = models.BigIntegerField(primary_key=True)
     name = models.TextField(blank=True, null=True)
-    dong = models.TextField(blank=True, null=True)
     sort_x = models.TextField(blank=True, null=True)
     menu_x = models.TextField(blank=True, null=True)
     naver_review_list = models.TextField(blank=True, null=True)
@@ -189,9 +189,11 @@ class MainDemo(models.Model):
     kakao_review_list = models.TextField(blank=True, null=True)
     total_score = models.FloatField(blank=True, null=True)
     total_review_count = models.BigIntegerField(blank=True, null=True)
-    clustering = models.BigIntegerField(blank=True, null=True)
-    pos_rev_rate = models.FloatField(db_column='pos_rev_Rate', blank=True, null=True)  # Field name made lowercase.
+    category = models.BigIntegerField(blank=True, null=True)
+    cluster = models.BigIntegerField(blank=True, null=True)
+    review_score = models.FloatField(blank=True, null=True)
+    region_code = models.BigIntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'main_demo'
+        db_table = 'main_data'

@@ -10,10 +10,10 @@ db.commit()
 data = pd.read_csv('./main/data/data.csv', encoding='utf-8', index_col=0)
 
 engine = create_engine('mysql+pymysql://root:qwedsa2249@localhost:3306/capston?charset=utf8mb4')
-# utf8로 이모티콘 등의 문자 인식되지 않는 것 해결 필요
+# utf8로 이모티콘 등의 문자 인식되지 않는 것 해결
 
 conn = engine.connect()
-data.to_sql(name='demo', con=engine, if_exists='replace', index=False)
+data.to_sql(name='data', con=engine, if_exists='replace', index=False)
 conn.close()
 
 # sql = 'SELECT * FROM demo'
