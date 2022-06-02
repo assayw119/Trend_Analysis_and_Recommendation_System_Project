@@ -1,16 +1,16 @@
 from gettext import GNUTranslations
 from unicodedata import name
 from django.shortcuts import render, get_object_or_404, redirect
+from sqlalchemy import null
 from .models import Data
 from django import template
 from .forms import RestaurantForm
 
 def showhome(request):
-    img = Data.objects.all() # 이미지만 못가져올까
-    cluster_img = []    
-    for i in range(len(img)):
+    cluster_img = []  
+    for i in range(5):
         cluster_img.append(Data.objects.filter(cluster=i).first())
-    return render(request, 'main/01_inflow_page.html', {'imgs':img, 'cluster_imgs':cluster_img})
+    return render(request, 'main/01_inflow_page.html', {'cluster_imgs':cluster_img})
 
 def showresultall(request):
     # sql = 'select * from demo'
@@ -18,25 +18,39 @@ def showresultall(request):
     # data = database.executeAll(sql)
     # restaurant = pd.DataFrame(data)
     # print(restaurant['name'])
-    restaurant = Data.objects.all().order_by('-total_score','-review_score')
+    # restaurant = Data.objects.all().order_by('-total_score','-review_score')
 
     if request.method=='GET':
         sido = request.GET.get('sido')
         sigugun = request.GET.get('sigugun')
-        # dong = request.GET.get('dong')
         img = request.GET.get('inner_img')
-        food = int(request.GET.get('food'))
-        address = int(str(sido) + str(sigugun))
-        context = {
+        food = request.GET.get('food')
+        
+        print(img)
+        if sigugun == '':
+            address = ''
+            restaurant_address = Data.objects.all()
+        else:
+            address = int(str(sido) + str(sigugun))
+            restaurant_address = Data.objects.filter(region_code = address)
+        if food == '전체':
+            restaurant_food = Data.objects.all()
+        else:
+            restaurant_food = Data.objects.filter(category = int(food))
+        if img == None:
+            print('~!~!~!~')
+            restaurant_img = Data.objects.all()
+        else:
+            restaurant_img = Data.objects.filter(cluster = int(img))
+        restaurant = (restaurant_address & restaurant_food & restaurant_img).order_by('-total_score','-review_score')
+    context = {
             'sido':sido,
             'sigugun':sigugun,
-            # 'dong':dong,
             'image':img,
             'food':food,
             'restaurant':restaurant,
             'address':address
         }
-
     return render(request, 'main/02_result_page.html', context)
 
 def showdetail(request,id):

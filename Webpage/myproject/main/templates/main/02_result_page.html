@@ -67,8 +67,6 @@
                     <!-- Post preview-->
                     <div id="restaurant-box" class="post-preview">
                         {% for info in restaurant %}
-                        {% if address == info.region_code %}
-                        {% if food == info.cluster %}
                         
 
                         <h2 class="post-title" style="left;">{{info.name}}</h2>
@@ -89,13 +87,10 @@
                             <p class="post-review">
                                 {{info.review_summary}}
                             </p>
-                            
                         </a>
                         
                         <!-- Divider-->
                         <hr class="my-6" />
-                        {% endif %}
-                        {% endif %}
                         {% endfor %}
                     </div>
                 </div>
