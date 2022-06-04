@@ -1,10 +1,12 @@
 from gettext import GNUTranslations
+import re
 from unicodedata import name
 from django.shortcuts import render, get_object_or_404, redirect
 from sqlalchemy import null
 from .models import Data
 from django import template
 from .forms import RestaurantForm
+from django.contrib.auth.models import User
 
 def showhome(request):
     cluster_img = []  
@@ -26,7 +28,6 @@ def showresultall(request):
         img = request.GET.get('inner_img')
         food = request.GET.get('food')
         
-        print(img)
         if sigugun == '':
             address = ''
             restaurant_address = Data.objects.all()
@@ -38,10 +39,13 @@ def showresultall(request):
         else:
             restaurant_food = Data.objects.filter(category = int(food))
         if img == None:
-            print('~!~!~!~')
             restaurant_img = Data.objects.all()
         else:
             restaurant_img = Data.objects.filter(cluster = int(img))
+        
+        if request.GET.get('sort',''):
+            sort = request.GET.get('sort','')
+            print(sort)
         restaurant = (restaurant_address & restaurant_food & restaurant_img).order_by('-total_score','-review_score')
     context = {
             'sido':sido,
@@ -57,31 +61,11 @@ def showdetail(request,id):
     restaurant = get_object_or_404(Data, pk=id)
     return render(request, 'main/03_detail_page.html', {'restaurant':restaurant})
 
-# def category(request):
-#     if request.method=='GET':
-#         sido = request.GET.get('sido')
-#         sigugun = request.GET.get('sigugun')
-#         img = request.GET.get('inner_img')
-#         food = request.GET.get('food')
-
-#         restaurant = RestaurantForm()
-#         restaurant.sido = sido
-#         restaurant.sigugun = sigugun
-#         restaurant.img = img
-#         restaurant.food = food
-#         # restaurant.save()
-#         context = {
-#             'sido':sido,
-#             'sigugun':sigugun,
-#             'image':img,
-#             'food':food
-#         }
-#         return render(request, '02_result_page.html', context)
-
-
-# def address(request):
-#     if request.method == 'GET':
-#         sido = request.GET.get('sido')
-#         sigugun = request.GET.get('sigugun')
-#         dong = request.GET.get('dong')
-#         return redirect('main/02_result_page.html', {'sido':sido, 'sigugun':sigugun, 'dong':dong'})
+# def sortresult(request):
+#     if request.method == "GET":
+#         sort = request.GET.get('sort')
+#         print(sort)
+#         name = request.GET.get('name')
+#         address = request.GET.get('address')
+#         restaurant_sort = Data.objects.filter(name=name, address=address).order_by('-{}'.format(sort))
+#         return render(request, 'main/02_result_page.html', {'restaurant': restaurant_sort})

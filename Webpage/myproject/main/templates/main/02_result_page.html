@@ -32,17 +32,37 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="{% url 'showhome' %}">MUDSIL</a>
+                <a class="navbar-brand" href="{% url 'main:showhome' %}">MUDSIL</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="about.html">About</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="post.html">Sample Post</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'main:showhome' %}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="https://github.com/assayw119/Trend_Analysis_and_Recommendation_System_Project" target="_blank">About</a></li>
+                        
+                        <li class="nav-item dropdown">
+                            {% if user.is_authenticated %}
+                            <!-- 로그인시 보이는 화면 -->
+                            <a class="nav-link dropdown-toggle px-lg-3 py-3 py-lg-4" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{user.username}}
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'account_logout' %}">로그아웃</a></li>
+                                <li><a class="dropdown-item" href="#">MyPage</a></li>
+                            </ul>
+                            {% else %}
+                            <!-- 로그아웃시 보이는 화면 -->
+                            <a class="nav-link dropdown-toggle px-lg-3 py-3 py-lg-4" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Login
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'account_login' %}">로그인</a></li>
+                                <li><a class="dropdown-item" href="{% url 'account_signup' %}">회원가입</a></li>
+                            </ul>
+                            {% endif %}
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -54,7 +74,7 @@
                     <div class="col-md-10 col-lg-8 col-xl-7">
                         <div class="site-heading">
                             <h1>오늘 먹어야 할 음식은?</h1>
-                            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                            <span class="subheading">{{restaurant|length}}개의 결과가 나왔습니다.</span>
                         </div>
                     </div>
                 </div>
@@ -64,13 +84,11 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
-                    <!-- Post preview-->
+                    
                     <div id="restaurant-box" class="post-preview">
                         {% for info in restaurant %}
-                        
-
-                        <h2 class="post-title" style="left;">{{info.name}}</h2>
-                        <a href="{% url 'showdetail' info.id %}">
+                        <h2 class="post-title" style="left;" name="name">{{info.name}}</h2>
+                        <a href="{% url 'main:showdetail' info.id %}">
                             <div class="progress" style="margin: 20px;">
                                 <div class="progress-bar" role="progressbar" aria-valuenow="{{info.review_score}}" aria-valuemin="0" aria-valuemax="100" style="width: {{info.review_score}}%">Positive</div>
                             </div>
@@ -82,7 +100,7 @@
                                 class="food-img" style="float:left;">
                             {% endif %}
                             <h3 class="post-score" style="float:right">평점: {{info.total_score}}</h3>
-                            <h3 class="post-address"">{{info.address}}</h3>
+                            <h3 class="post-address" name="address">{{info.address}}</h3>
 
                             <p class="post-review">
                                 {{info.review_summary}}
@@ -94,25 +112,9 @@
                         {% endfor %}
                     </div>
                 </div>
-                <!-- Paging-->
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
-
-
-
+        
         <!-- Footer-->
         <footer class="border-top">
             <div class="container px-4 px-lg-5">

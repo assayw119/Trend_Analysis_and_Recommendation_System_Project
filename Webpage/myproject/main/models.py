@@ -8,6 +8,8 @@
 from re import A
 from django.db import models
 import random
+from django.contrib.auth.models import User
+
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
@@ -80,6 +82,7 @@ class AuthUserUserPermissions(models.Model):
 
 class Data(models.Model):
     id = models.BigIntegerField(primary_key=True)
+    # saver = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.TextField(blank=True, null=True)
     sort_x = models.TextField(blank=True, null=True)
     menu_x = models.TextField(blank=True, null=True)
@@ -111,6 +114,22 @@ class Data(models.Model):
         else:
             return self.naver_review_list
     
+    # 상세 페이지에서 네이버 리뷰 보여주기
+    def naver_review(self):
+        if self.naver_review_list:
+            if '/' in self.naver_review_list:
+                return self.naver_review_list.split('/')
+        else:
+            return ''
+    
+    # 상세 페이지에서 카카오 리뷰 보여주기
+    def kakao_review(self):
+        if self.kakao_review_list:
+            if '/' in self.kakao_review_list:
+                return self.kakao_review_list.split('/')
+        else:
+            return ''
+    
     # 음식점 내부 이미지 반복출력 위해 split 후 리스트로 반환
     def img_summary(self):
         if self.img_inner:
@@ -139,6 +158,9 @@ class Data(models.Model):
         else:
             return "../static/assets/img/img_nothing.jpeg"
     
+    # total score 100%로 표시
+    def total_score_(self):
+        return int(self.total_score) * 20
 
 
 class DjangoAdminLog(models.Model):

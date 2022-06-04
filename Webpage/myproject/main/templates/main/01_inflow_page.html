@@ -37,92 +37,69 @@
                     <i class="fas fa-laugh-wink"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">MUDSIL</div>
-            </a>
+            </a>            
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                오늘의 추천 리스트
+                
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                오늘의 추천 키워드
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+                {% if user.is_authenticated %}
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Components</span>
+                    <span>{{user.username}}</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                        <a class="collapse-item" href="{% url 'account_logout' %}">
+                            로그아웃
+                        </a>
+                        <a class="collapse-item" href="#">
+                            환경설정
+                        </a>
                     </div>
                 </div>
+                {% else %}
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>LOGIN</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Login Screens:</h6>
+                        <a class="collapse-item" href="{% url 'account_login' %}">
+                            로그인
+                        </a>
+                        <a class="collapse-item" href="{% url 'account_signup' %}">
+                            회원가입
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
             </li>
 
-            <!-- Nav Item - Charts -->
+            <!-- Nav Item -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="https://github.com/assayw119/Trend_Analysis_and_Recommendation_System_Project" target="_blank">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Components</span></a>
+                    <span>ABOUT</span>
+                </a>
             </li>
 
-            <!-- Nav Item - Tables -->
+            <!-- Nav Item -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Components</span></a>
+                    <span>MY PAGE</span>
+                </a>
             </li>
 
             <!-- Divider -->
@@ -137,7 +114,7 @@
         </ul>
         <!-- End of Sidebar -->
 
-        <form id="content-wrapper" class="form-subscribe d-flex flex-column" id="contactForm" data-sb-form-api-token="API_TOKEN" action="{% url 'showresultall' %}" method="GET">
+        <form id="content-wrapper" class="form-subscribe d-flex flex-column" id="contactForm" data-sb-form-api-token="API_TOKEN" action="{% url 'main:showresultall' %}" method="GET">
         {% csrf_token %}
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
@@ -199,7 +176,7 @@
                         {% for i in cluster_imgs %}
                         {% if i != None %}
                         <label>
-                            <input type="radio" name="inner_img" value="{{forloop.counter}}">
+                            <input type="radio" name="inner_img" value="{{forloop.counter0}}">
                             <img src="{{i.img_summary}}" id="img_mood" name="{{i.id_num}}" class="cluster-img" style="display: inline-block; text-align: center;">
                         </label>
                         {% endif %}

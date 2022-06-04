@@ -7,7 +7,7 @@ DATABASES = {
         'NAME' : 'capston',
         'USER' : 'root',
         'PASSWORD' : 'qwedsa2249',
-        'HOST' : 'localhost',
+        'HOST' : '127.0.0.1',
         'PORT' : '3306',
         'OPTIONS' : {"charset": "utf8mb4"},
     }

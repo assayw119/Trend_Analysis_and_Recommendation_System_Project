@@ -26,7 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    '*',
+    ".ap-northeast-2.compute.amazonaws.com",
+    ]
 
 
 # Application definition
@@ -39,6 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'accounts',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # 'users',
+    # provider
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +146,18 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+AUTHENTICATION_BACKENDS=[
+    #superuser 로그인 기능
+    'django.contrib.auth.backends.ModelBackend',
+    #이메일 등의 로그인 기능
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# admin 페이지 관리 번호, 단일서버는 1 입력
+SITE_ID = 1
+
+# 로그인 시 이동하는 페이지, 만약 글 목록으로 이동하고 싶다면 '/posts'
+LOGIN_REDIRECT_URL = '/' #메인화면으로 이동
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
