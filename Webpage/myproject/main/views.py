@@ -15,12 +15,6 @@ def showhome(request):
     return render(request, 'main/01_inflow_page.html', {'cluster_imgs':cluster_img})
 
 def showresultall(request):
-    # sql = 'select * from demo'
-    # database = Database()
-    # data = database.executeAll(sql)
-    # restaurant = pd.DataFrame(data)
-    # print(restaurant['name'])
-    # restaurant = Data.objects.all().order_by('-total_score','-review_score')
 
     if request.method=='GET':
         sido = request.GET.get('sido')
