@@ -21,33 +21,40 @@ chrome_options.add_argument("--headless")
 
 def fetch_review(url):
     print(f"{os.getpid()} process | {threading.get_ident()} thread, {url}")
-    driver = webdriver.Chrome(
-        "/Users/seop/Documents/GitHub/Python-Concurrency-Programming/exercise/chromedriver",
-        chrome_options=chrome_options,
-    )
-    driver.get(url[:-4] + "review/visitor")
-
+    try:
+        driver = webdriver.Chrome(
+            "/Users/seop/Documents/GitHub/Trend_Analysis_and_Recommendation_System_Project/Place_crawling/chromedriver",
+            chrome_options=chrome_options,
+        )
+        driver.get(url[:-4] + "review/visitor")
+    except:
+        print(url, "| HTTP Error 500: Internal Server Error")
     return naver_reviews_list(driver, url, 5)
 
 
 def fetch_image_food(url):
-    print(f"{os.getpid()} process | {threading.get_ident()} thread, {url}")
-    driver = webdriver.Chrome(
-        "/Users/seop/Documents/GitHub/Python-Concurrency-Programming/exercise/chromedriver",
-        chrome_options=chrome_options,
-    )
-    driver.get(url[:-4] + "photo?filterType=음식")
-
+    # print(f"{os.getpid()} process | {threading.get_ident()} thread, {url}")
+    try:
+        driver = webdriver.Chrome(
+            "/Users/seop/Documents/GitHub/Trend_Analysis_and_Recommendation_System_Project/Place_crawling/chromedriver",
+            chrome_options=chrome_options,
+        )
+        driver.get(url[:-4] + "photo?filterType=음식")
+    except:
+        print(url, "| HTTP Error 500: Internal Server Error")
     return image_crawling(driver, url, 30)
 
 
 def fetch_image_inner(url):
-    print(f"{os.getpid()} process | {threading.get_ident()} thread, {url}")
-    driver = webdriver.Chrome(
-        "/Users/seop/Documents/GitHub/Python-Concurrency-Programming/exercise/chromedriver",
-        chrome_options=chrome_options,
-    )
-    driver.get(url[:-4] + "photo?filterType=내부")
+    # print(f"{os.getpid()} process | {threading.get_ident()} thread, {url}")
+    try:
+        driver = webdriver.Chrome(
+            "/Users/seop/Documents/GitHub/Trend_Analysis_and_Recommendation_System_Project/Place_crawling/chromedriver",
+            chrome_options=chrome_options,
+        )
+        driver.get(url[:-4] + "photo?filterType=내부")
+    except:
+        print(url, "| HTTP Error 500: Internal Server Error")
     return image_crawling(driver, url, 30)
 
 
@@ -68,7 +75,7 @@ def main():
     region_df = pd.read_csv("/Users/seop/Downloads/Report.csv")
     region_df = region_df.drop(index=[0, 1, 2], axis=0)
 
-    for region in region_df["법정동"]:
+    for region in region_df["법정동"][:1]:
 
         print("현재 지역 :", region)
         urls = restaurant(region, 3)
@@ -100,7 +107,7 @@ def main():
         df = pd.concat([df, result_selenium], axis=1)
         df.to_csv(f"{region}.csv", encoding="utf-8-sig")
 
-    return
+    return df, result_selenium
 
 
 if __name__ == "__main__":
@@ -108,7 +115,6 @@ if __name__ == "__main__":
     start = time.time()
     df, result_selenium = main()
     end = time.time()
-
-    print(end - start)
+    print(end - start, " second")
 
 # 60초
