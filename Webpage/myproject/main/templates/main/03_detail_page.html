@@ -48,92 +48,90 @@
     <section class="py-5">
         <div class="container px-1 px-lg-0 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-6 px-lg-0">
-                    <div id="slideShow">
-                        <ul class="slides">
-                            {% if restaurant.img_food %}
-                            {% for i in restaurant.food_list %}
-                            <li><img src="{{i}}" alt="food-list" class="food-img"></li>
-                            {% endfor %}
-                            {% else %}
-                            <li><img src="../static/assets/img/img_nothing.jpeg" alt="food-list" class="food-img"></li>
-                            {% endif %}
+                <div id="slideShow">
+                    <ul class="slides">
+                        {% if restaurant.img_food %}
+                        {% for i in restaurant.food_list %}
+                        <li><img src="{{i}}" alt="food-list" class="food-img"></li>
+                        {% endfor %}
+                        {% else %}
+                        <li><img src="../static/assets/img/img_nothing.jpeg" alt="food-list" class="food-img"></li>
+                        {% endif %}
 
-                        </ul>  
-                        <p class="controller">
-                            
-                            <!-- &lang: 왼쪽 방향 화살표
-                            &rang: 오른쪽 방향 화살표 -->
-                            <span class="prev">&lang;</span>  
-                            <span class="next">&rang;</span>
-                        </p>
-                    </div>    
-                    <div id="slideShow2">
-                        <ul class="slides">
-                            {% for j in restaurant.rest_list %}
-                            <li><img src="{{j}}" alt="restaurant-list" class="rest-img"></li>
-                            {% endfor %}
-                        </ul>  
-                        <p class="controller">
-                            
-                            <!-- &lang: 왼쪽 방향 화살표
-                            &rang: 오른쪽 방향 화살표 -->
-                            <span class="prev">&lang;</span>  
-                            <span class="next">&rang;</span>
-                        </p>
-                    </div>    
-            </div>
-                <div class="col-md-6">
-                    <div class="small mb-1">{{restaurant.sort_x}}, {{restaurant.sort_y}}</div>
-                    <h1 class="display-5 fw-bolder">{{restaurant.name}}</h1>
-                    <div class="fs-5 mb-5">
-                        <span></span>
-                        <div class="progress" style="margin: 20px;">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="{{restaurant.total_score}}" aria-valuemin="0" aria-valuemax="5" style="width: {{restaurant.total_score_}}%">
-                                Score  {{restaurant.total_score}}
-                            </div>
-                        </div>
-                        <div class="progress" style="margin: 20px;">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="{{restaurant.review_score}}" aria-valuemin="0" aria-valuemax="100" style="width: {{restaurant.review_score}}%">
-                                Positive  {{restaurant.review_score}}%
-                            </div>
+                    </ul>  
+                    <p class="controller">
+                        
+                        <!-- &lang: 왼쪽 방향 화살표
+                        &rang: 오른쪽 방향 화살표 -->
+                        <span class="prev">&lang;</span>  
+                        <span class="next">&rang;</span>
+                    </p>
+                </div>    
+                <div id="slideShow2">
+                    <ul class="slides">
+                        {% for j in restaurant.rest_list %}
+                        <li><img src="{{j}}" alt="restaurant-list" class="rest-img"></li>
+                        {% endfor %}
+                    </ul>  
+                    <p class="controller">
+                        
+                        <!-- &lang: 왼쪽 방향 화살표
+                        &rang: 오른쪽 방향 화살표 -->
+                        <span class="prev">&lang;</span>  
+                        <span class="next">&rang;</span>
+                    </p>
+                </div>  
+            </div>  
+            <div class="align-items-center" style="width: 70%; margin: auto;">
+                <h1 class="display-5 fw-bolder">{{restaurant.name}}</h1>
+                <div class="small mb-1">{{restaurant.sort_x}}, {{restaurant.sort_y}}</div>
+                <div class="fs-5 mb-5">
+                    <span></span>
+                    <div class="progress" style="margin: 20px;">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="{{restaurant.total_score}}" aria-valuemin="0" aria-valuemax="5" style="width: {{restaurant.total_score_}}%">
+                            Score  {{restaurant.total_score}}
                         </div>
                     </div>
-                    <span><h3>주소</h3>{{restaurant.address}}</span><br><br>
-                    <hr class="my-6" style="border-top: 3px double #bbb">
-                    <span><h3>메뉴</h3>{{restaurant.menu_x}}</span><br><br>
-                    <hr class="my-6" style="border-top: 3px double #bbb">
-                    <p class="lead">
-                        <h5>
-                            <img src="https://img.etnews.com/photonews/2110/1459045_20211004132110_253_0001.jpg" style="height: 30px;">
-                            ({{restaurant.naver_review|length}})<br>
-                        </h5>
-                        <div class="div" style="overflow-y: scroll; height:300px;">
-                            {% for info in restaurant.naver_review %}
-                            {{info}}
-                            <hr style="color: #999999; border-style:dashed">
-                            {% endfor %}
+                    <div class="progress" style="margin: 20px;">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="{{restaurant.review_score}}" aria-valuemin="0" aria-valuemax="100" style="width: {{restaurant.review_score}}%">
+                            Positive  {{restaurant.review_score}}%
                         </div>
-                    </p>
-                    <hr class="my-6" style="border-top: 3px double #bbb">
-                    <p class="lead">
-                        <h5>
-                            <img src="data:image/png;base64,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" style="height: 50px;">
-                            ({{restaurant.kakao_review|length}})<br>
-                        </h5>
-                        <div class="div" style="overflow-y: scroll; height:300px;">
-                            {% for info in restaurant.kakao_review %}
-                            {{info}}
-                            <hr style="color: #999999; border-style:dashed">
-                            {% endfor %}
-                        </div>
-                    </p>
-                    <div class="d-flex">
-                        <button class="btn btn-outline-dark flex-shrink-0" type="submit">
-                            <i class="bi-cart-fill me-1"></i>
-                            Add to cart
-                        </button>
                     </div>
+                </div>
+                <span><h3>주소</h3>{{restaurant.address}}</span><br><br>
+                <hr class="my-6" style="border: 3px double #bbb">
+                <span><h3>메뉴</h3>{{restaurant.menu_x}}</span><br><br>
+                <hr class="my-6" style="border: 3px double #bbb">
+                <p class="lead">
+                    <h5>
+                        <img src="https://img.etnews.com/photonews/2110/1459045_20211004132110_253_0001.jpg" style="height: 30px;">
+                        ({{restaurant.naver_review|length}})<br>
+                    </h5>
+                    <div class="div" style="overflow-y: scroll; height:300px;">
+                        {% for info in restaurant.naver_review %}
+                        {{info}}
+                        <hr style="color: #999999; border-style:dashed">
+                        {% endfor %}
+                    </div>
+                </p>
+                <hr class="my-6" style="border: 3px double #bbb">
+                <p class="lead">
+                    <h5>
+                        <img src="data:image/png;base64,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" style="height: 50px;">
+                        ({{restaurant.kakao_review|length}})<br>
+                    </h5>
+                    <div class="div" style="overflow-y: scroll; height:300px;">
+                        {% for info in restaurant.kakao_review %}
+                        {{info}}
+                        <hr style="color: #999999; border-style:dashed">
+                        {% endfor %}
+                    </div>
+                </p>
+                <div class="d-flex">
+                    <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Scrap
+                    </button>
                 </div>
             </div>
         </div>
