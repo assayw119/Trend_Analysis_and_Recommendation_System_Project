@@ -10,12 +10,12 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-def crawling(urls, region):
+def crawling(df, urls, region):
 
-    global df
     for idx, url in enumerate(urls):
-        print(url)
-        print(f"{idx}번째 URL")
+        # print(url)
+
+        # print(f"{idx}번째 URL")
         s = time.time()
         result = inform_restaurant(url)
         options = webdriver.ChromeOptions()
@@ -58,7 +58,7 @@ def crawling(urls, region):
         except:
             pass
         e = time.time()
-        print("time for each loop : ", e - s, "s")
+        # print("time for each loop : ", e - s, "s")
 
     df.to_csv(f"{region}.csv", encoding="utf-8-sig")
 
@@ -84,17 +84,18 @@ def start_crawling(region_df):
             ]
         )
 
-        crawling(urls, region)
+        crawling(df, urls, region)
 
 
 def main():
 
     region_df = pd.read_csv("/Users/seop/Downloads/Report.csv")
     region_df = region_df.drop(index=[0, 1, 2], axis=0)
-    start_crawling(region_df)
+    start_crawling(region_df[:1])
 
 
 if __name__ == "__main__":
     start = time.time()
     main()
     end = time.time()
+    print(end - start, " second")
