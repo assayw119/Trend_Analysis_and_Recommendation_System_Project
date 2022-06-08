@@ -87,18 +87,17 @@
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="mb-5" style="float: center;">
                         <button class="btn btn-outline-dark flex-shrink-0" onclick="history.back()" style="margin-right: 10px;">
-                            목록으로 돌아가기
+                            처음으로
                         </button>
-                        <select name="sort" id="sort" class="form-select mb-5 text-center" style=" width: 200px; float:right;">
+                        <!-- <select name="sort" id="sort" class="form-select mb-5 text-center" style=" width: 200px; float:right;">
                             <option selected>정렬 기준</option>>
-                            <option value="">평점 높은 순</option>>
+                            <option value="total_score">평점 높은 순</option>>
                             <option value="review_score">긍정 높은 순</option>>
                             <option value="total_review_count">리뷰 많은 순</option>>
                         </select>
-                        <button type="submit">테스트</button>
+                        <button type="submit">테스트</button> -->
                     </div>                 
                     <div id="restaurant-box" class="post-preview">
-                        
                         {% for info in restaurant %}
                         <h2 class="post-title" style="left;" name="name">{{info.name}}</h2>
                         <a href="{% url 'main:showdetail' info.id %}">
