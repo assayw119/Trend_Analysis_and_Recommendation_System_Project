@@ -2422,6 +2422,8 @@ textarea.form-control-lg {
 }
 @media (prefers-reduced-motion: reduce) {
   .form-select {
+    width: 300px;
+    height: 100px;
     transition: none;
   }
 }

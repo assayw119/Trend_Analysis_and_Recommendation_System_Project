@@ -28,7 +28,7 @@
 
 
     </head>
-    <body>
+    <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
             <div class="container px-4 px-lg-5">
@@ -80,12 +80,25 @@
                 </div>
             </div>
         </header>
+        
         <!-- Main Content-->
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
-                    
+                    <div class="mb-5" style="float: center;">
+                        <button class="btn btn-outline-dark flex-shrink-0" onclick="history.back()" style="margin-right: 10px;">
+                            목록으로 돌아가기
+                        </button>
+                        <select name="sort" id="sort" class="form-select mb-5 text-center" style=" width: 200px; float:right;">
+                            <option selected>정렬 기준</option>>
+                            <option value="">평점 높은 순</option>>
+                            <option value="review_score">긍정 높은 순</option>>
+                            <option value="total_review_count">리뷰 많은 순</option>>
+                        </select>
+                        <button type="submit">테스트</button>
+                    </div>                 
                     <div id="restaurant-box" class="post-preview">
+                        
                         {% for info in restaurant %}
                         <h2 class="post-title" style="left;" name="name">{{info.name}}</h2>
                         <a href="{% url 'main:showdetail' info.id %}">
@@ -111,6 +124,12 @@
                         <hr class="my-6" />
                         {% endfor %}
                     </div>
+                    <!-- Scroll to Top Button-->
+                    <div style="float: right;" >
+                        <a class="scroll-to-top rounded" href="#page-top">
+                            <i class="fas fa-angle-up">Top</i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -135,6 +154,5 @@
                 </div>
             </div>
         </footer>
-
     </body>
 </html>

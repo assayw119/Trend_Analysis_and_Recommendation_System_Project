@@ -37,19 +37,18 @@ def showresultall(request):
         else:
             restaurant_img = Data.objects.filter(cluster = int(img))
         
-        if request.GET.get('sort',''):
-            sort = request.GET.get('sort','')
-            print(sort)
         restaurant = (restaurant_address & restaurant_food & restaurant_img).order_by('-total_score','-review_score')
-    context = {
-            'sido':sido,
-            'sigugun':sigugun,
-            'image':img,
-            'food':food,
-            'restaurant':restaurant,
-            'address':address
-        }
-    return render(request, 'main/02_result_page.html', context)
+        
+        context = {'restaurant':restaurant}
+        return render(request, 'main/02_result_page.html', context)
+
+# def sort(request, data):
+#     restaurant = get_object_or_404(Data, pk=)
+#     print(data)
+
+
+
+
 
 def showdetail(request,id):
     restaurant = get_object_or_404(Data, pk=id)
