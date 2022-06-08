@@ -32,3 +32,4 @@ def restaurant(station, displayCount):
         url = "https://m.place.naver.com/restaurant/{}/home".format(i)
         id_.append(url)
     return id_
+    
