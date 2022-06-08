@@ -43,9 +43,22 @@ transition: left 0.5s ease-out;
 /*ease-out: 처음에는 느렸다가 점점 빨라짐*/
 }
 
+.slides2{
+position: absolute;
+left: 0;
+top: 0;
+width: 2500px; /* 슬라이드할 사진과 마진 총 넓이 */
+transition: left 0.5s ease-out; 
+/*ease-out: 처음에는 느렸다가 점점 빨라짐*/
+}
+
 /* 첫 번째 슬라이드 가운데에 정렬하기위해
 첫번째 슬라이드만 margin-left조정 */
 .slides li:first-child{
+margin-left: 65px;
+}
+
+.slides2 li:first-child{
 margin-left: 65px;
 }
 
@@ -55,11 +68,32 @@ float: left;
 margin-right: 100px;
 }
 
+.slides2 li:not(:last-child){
+float: left;
+margin-right: 100px;
+}
+
 .slides li{
 float: left;
 }
 
+.slides2 li{
+float: left;
+}
+
 .controller span{
+position:absolute;
+background-color: transparent;
+color: black;
+text-align: center;
+border-radius: 50%;
+padding: 10px 20px;
+top: 50%;
+font-size: 1.3em;
+cursor: pointer;
+}
+
+.controller2 span{
 position:absolute;
 background-color: transparent;
 color: black;
@@ -76,7 +110,15 @@ cursor: pointer;
 background-color: rgba(128, 128, 128, 0.11);
 }
 
+.controller2 span:hover{
+background-color: rgba(128, 128, 128, 0.11);
+}
+
 .prev{
+left: 10px;
+}
+
+.prev2{
 left: 10px;
 }
 
@@ -86,13 +128,25 @@ left: 10px;
 transform: translateX(-10px);
 }
 
+.prev2:hover{
+transform: translateX(-10px);
+}
+
 .next{
+right: 10px;
+}
+
+.next2{
 right: 10px;
 }
 
 /* 다음 화살표에 마우스 커서가 올라가 있을때 
 이전 화살표가 살짝 오른쪽으로 이동하는 효과*/
 .next:hover{
+transform: translateX(10px);
+}
+
+.next2:hover{
 transform: translateX(10px);
 }
 
