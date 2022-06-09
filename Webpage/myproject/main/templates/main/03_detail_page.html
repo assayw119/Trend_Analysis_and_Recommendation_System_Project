@@ -68,17 +68,21 @@
                     </p>
                 </div>    
                 <div id="slideShow2">
-                    <ul class="slides">
+                    <ul class="slides2">
+                        {% if restaurant.img_inner %}
                         {% for j in restaurant.rest_list %}
                         <li><img src="{{j}}" alt="restaurant-list" class="rest-img"></li>
                         {% endfor %}
+                        {% else %}
+                        <li><img src="../static/assets/img/img_nothing.jpeg" alt="food-list" class="food-img"></li>
+                        {% endif %}
                     </ul>  
-                    <p class="controller">
+                    <p class="controller2">
                         
                         <!-- &lang: 왼쪽 방향 화살표
                         &rang: 오른쪽 방향 화살표 -->
-                        <span class="prev">&lang;</span>  
-                        <span class="next">&rang;</span>
+                        <span class="prev2">&lang;</span>  
+                        <span class="next2">&rang;</span>
                     </p>
                 </div>  
             </div>  

@@ -21,6 +21,12 @@ def showresultall(request):
         sigugun = request.GET.get('sigugun')
         img = request.GET.get('inner_img')
         food = request.GET.get('food')
+
+        # new_form = RestaurantForm()
+        # new_form.sido = sido
+        # new_form.sigugun = sigugun
+        # new_form.img = img
+        # new_form.food = food
         
         if sigugun == '':
             address = ''
@@ -42,23 +48,20 @@ def showresultall(request):
         context = {'restaurant':restaurant}
         return render(request, 'main/02_result_page.html', context)
 
-# def sort(request, data):
-#     restaurant = get_object_or_404(Data, pk=)
-#     print(data)
+# def showsort(request):
 
+#     if request.method == "POST":
 
+#         sort = request.POST.get('sort')
 
+#         data = RestaurantForm
+#         print(data)
+#         sido = data.sido
+#         sigugun = data.sigugun
+#         img = data.img
+#         food = data.food
 
 
 def showdetail(request,id):
     restaurant = get_object_or_404(Data, pk=id)
     return render(request, 'main/03_detail_page.html', {'restaurant':restaurant})
-
-# def sortresult(request):
-#     if request.method == "GET":
-#         sort = request.GET.get('sort')
-#         print(sort)
-#         name = request.GET.get('name')
-#         address = request.GET.get('address')
-#         restaurant_sort = Data.objects.filter(name=name, address=address).order_by('-{}'.format(sort))
-#         return render(request, 'main/02_result_page.html', {'restaurant': restaurant_sort})

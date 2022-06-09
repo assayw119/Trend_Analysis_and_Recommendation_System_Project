@@ -6,6 +6,6 @@ urlpatterns = [
     path('', showhome, name='showhome'),
     path('resultall/', showresultall, name='showresultall'),
     path('result/<str:id>', showdetail, name='showdetail'),
-    # path('sort', sortresult, name='sortresult'),
+    # path('sort/', showsort, name='showsort'),
 
 ]
