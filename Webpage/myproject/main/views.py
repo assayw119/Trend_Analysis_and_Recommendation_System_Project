@@ -1,5 +1,6 @@
 from gettext import GNUTranslations
 import re
+from tkinter import Pack
 from unicodedata import name
 from django.shortcuts import render, get_object_or_404, redirect
 from sqlalchemy import null
@@ -7,6 +8,7 @@ from .models import Data
 from django import template
 from .forms import RestaurantForm
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 
 def showhome(request):
     cluster_img = []  
@@ -44,8 +46,12 @@ def showresultall(request):
             restaurant_img = Data.objects.filter(cluster = int(img))
         
         restaurant = (restaurant_address & restaurant_food & restaurant_img).order_by('-total_score','-review_score')
-        
-        context = {'restaurant':restaurant}
+        length = len(restaurant)
+        paginator = Paginator(restaurant, 10)
+        pagnum = request.GET.get('page')
+        restaurant = paginator.get_page(pagnum)
+
+        context = {'restaurant':restaurant, 'length':length}
         return render(request, 'main/02_result_page.html', context)
 
 # def showsort(request):
