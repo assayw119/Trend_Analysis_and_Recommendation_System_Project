@@ -1,10 +1,10 @@
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from concurrent.futures import ProcessPoolExecutor
 import os
 import threading
-from selenium.webdriver.chrome.options import Options
 import pandas as pd
 from naver_reviews import naver_reviews_list
 from search_restaurant_url import restaurant
