@@ -37,7 +37,8 @@ cd myproject
 
 5. database 설정
 
-- 기본 세팅
+- 기본 세팅 : 
+
 https://heroeswillnotdie.tistory.com/16
 
 - myproject/main/database.py 생성 (중괄호 부분 수정할 것)
@@ -94,6 +95,11 @@ class Database():
 
     def commit(self):
         self.db.commit()
+```
+
+- 데이터베이스 연동
+```
+python main/database.py
 ```
 
 6. migrate
