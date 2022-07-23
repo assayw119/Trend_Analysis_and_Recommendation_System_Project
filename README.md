@@ -106,3 +106,13 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
+
+### 결과
+
+- AWS EC2 배포 결과 : http://mudsil.com/
+
+<img width="1375" alt="image" src="https://user-images.githubusercontent.com/87521259/180601272-94f6b0eb-198a-45aa-943c-1d17c6562f4a.png">
+<img width="1372" alt="스크린샷 2022-07-23 오후 7 24 57" src="https://user-images.githubusercontent.com/87521259/180601288-82a6820b-76e5-4419-87e6-ac6e194cde07.png">
+<img width="1368" alt="스크린샷 2022-07-23 오후 7 25 20" src="https://user-images.githubusercontent.com/87521259/180601296-1dfb975d-9e8f-411b-b5ab-142019d37bd4.png">
+
+- 2022 데이터사이언스 캡스톤디자인 1등
